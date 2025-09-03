@@ -18,7 +18,7 @@ const menu_data: MenuItem[] = [
     {
         id: 1,
         title: "Home",
-        link: "http://localhost:3000",
+        link: "/",
         has_dropdown: false,
     },
     {
@@ -30,7 +30,7 @@ const menu_data: MenuItem[] = [
     {
         id: 3,
         title: "Leistungen",
-        link: "http://localhost:3000/services",
+        link: "/services",
         has_dropdown: false,
     },
     {
