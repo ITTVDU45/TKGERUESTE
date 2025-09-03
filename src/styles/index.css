@@ -1870,8 +1870,11 @@ html,body,#root{
   transition: background .24s ease, color .18s ease, transform .12s ease;
 }
 .service-slider-area .service-btn:hover{
-  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
-  color: #fff !important;
+  /* show text as gradient on hover instead of coloring the whole button background */
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
   transform: translateY(-2px);
 }
 
