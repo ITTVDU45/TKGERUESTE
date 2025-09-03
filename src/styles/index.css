@@ -2262,3 +2262,36 @@ html,body,#root{
   cursor: pointer;
   font-size: 13px;
 }
+
+/* Offcanvas / Mobile sidebar: white background, subtle border, dark text */
+.offcanvas__info .offcanvas__wrapper{
+  background: #ffffff !important;
+  border-left: 3px solid rgba(0,0,0,0.08) !important; /* replace red with subtle dark border */
+  box-shadow: none !important;
+}
+.offcanvas__info .offcanvas__content{
+  background: transparent !important;
+  color: var(--brand-ink) !important;
+  padding: 28px !important;
+}
+.offcanvas__info .offcanvas__content a,
+.offcanvas__info .mobile-menu .mean-nav a{
+  color: var(--brand-ink) !important;
+  text-decoration: none !important;
+}
+.offcanvas__info .mobile-menu .mean-nav a{
+  display: block;
+  padding: 18px 0 !important;
+  border-bottom: 1px solid rgba(0,0,0,0.06) !important;
+}
+.offcanvas__info .mobile-menu .mean-nav a:hover{
+  background: none !important;
+  color: rgba(11,18,32,0.9) !important;
+}
+.offcanvas__info .offcanvas__top .offcanvas__logo img{ filter: none !important; }
+.offcanvas__info .offcanvas__close button i{ color: var(--brand-ink) !important; }
+
+/* Ensure overlay remains subtle */
+.offcanvas__overlay{
+  background: rgba(0,0,0,0.35) !important;
+}
