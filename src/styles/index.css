@@ -2266,8 +2266,20 @@ html,body,#root{
 /* Offcanvas / Mobile sidebar: white background, subtle border, dark text */
 .offcanvas__info .offcanvas__wrapper{
   background: #ffffff !important;
-  border-left: 3px solid rgba(0,0,0,0.08) !important; /* replace red with subtle dark border */
+  border-left: 6px solid transparent !important; /* gradient bar applied via pseudo */
   box-shadow: none !important;
+  position: relative;
+}
+.offcanvas__info .offcanvas__wrapper::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  background: linear-gradient(180deg, var(--brand-magenta) 0%, var(--brand-violet) 50%, var(--brand-orange) 100%) !important;
 }
 .offcanvas__info .offcanvas__content{
   background: transparent !important;
