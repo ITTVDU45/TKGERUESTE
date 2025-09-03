@@ -1526,6 +1526,32 @@ html,body,#root{
 .header-area .primary-btn-1.btn-hover .icon-right-arrow{
   color: #fff;
 }
+
+/* Burger / mobile menu icon: use brand gradient on hover instead of red */
+.header__hamburger .bar-icon{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  transition: background .22s ease, transform .12s ease, box-shadow .12s ease;
+}
+.header__hamburger .bar-icon i{
+  color: var(--brand-ink) !important;
+  font-size: 20px;
+}
+.header__hamburger .bar-icon:hover,
+.header__hamburger .bar-icon:focus{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  box-shadow: 0 10px 30px rgba(34,22,80,0.06);
+  transform: translateY(-2px);
+}
+.header__hamburger .bar-icon:hover i,
+.header__hamburger .bar-icon:focus i{
+  color: #fff !important;
+}
+
 .header-area .header-link-1 .icon{
   width:46px;
   height:46px;
