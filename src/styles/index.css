@@ -1878,6 +1878,53 @@ html,body,#root{
   transform: translateY(-2px);
 }
 
+/* Filter buttons (tabs/pills) - show subtle gradient on active/hover text */
+.filter-buttons .btn,
+.filter-btn,
+.filter-tab,
+.filter-toggle,
+.filter-button{
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  color: var(--brand-ink);
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: color .18s ease, background-position .24s ease, transform .12s ease;
+}
+.filter-buttons .btn:hover,
+.filter-btn:hover,
+.filter-tab:hover,
+.filter-toggle:hover,
+.filter-button:hover,
+.filter-buttons .btn.active,
+.filter-btn.active,
+.filter-tab.active,
+.filter-toggle.active,
+.filter-button.active{
+  background: transparent !important;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  color: transparent !important;
+}
+
+/* Table icons: replace small blue icons with dark gradient circular icons */
+.table .fa,
+.table .icon,
+.table .icon-box i,
+.data-table .fa{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, var(--brand-magenta) 0%, var(--brand-violet) 50%, var(--brand-orange) 100%);
+  color: #fff !important;
+  font-size: 16px;
+}
+
+
 /* Strong header adjustments requested: active & hover use text-gradient, not white */
 .header-area .main-menu nav a{
   color: var(--brand-ink) !important;
