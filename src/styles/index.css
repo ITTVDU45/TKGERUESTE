@@ -1864,6 +1864,17 @@ html,body,#root{
   transform: rotate(-135deg);
 }
 
+/* Service card 'Mehr dazu' button: gradient on hover */
+.service-slider-area .service-btn{
+  color: var(--brand-ink);
+  transition: background .24s ease, color .18s ease, transform .12s ease;
+}
+.service-slider-area .service-btn:hover{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
 /* Strong header adjustments requested: active & hover use text-gradient, not white */
 .header-area .main-menu nav a{
   color: var(--brand-ink) !important;
