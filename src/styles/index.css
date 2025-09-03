@@ -2299,6 +2299,27 @@ html,body,#root{
 
 /* add padding so menu contents don't overlap the gradient bar */
 .offcanvas__info .offcanvas__content{ padding-left: 20px !important; }
+
+/* Ensure offcanvas sits above header and overlays header icons on mobile */
+.offcanvas__info{
+  z-index: 99999 !important;
+}
+.offcanvas__info .offcanvas__wrapper{
+  z-index: 100000 !important;
+}
+.offcanvas__overlay,
+.offcanvas__overlay-white{
+  z-index: 99998 !important;
+}
+
+/* Hide logo inside mobile sidebar to avoid overlap */
+.offcanvas__top .offcanvas__logo{ display: none !important; }
+
+/* Push menu content down so header call button doesn't overlap */
+.offcanvas__info .offcanvas__content{
+  padding-top: 90px !important; /* leaves space for header content */
+}
+
 .offcanvas__info .offcanvas__content{
   background: transparent !important;
   color: var(--brand-ink) !important;
