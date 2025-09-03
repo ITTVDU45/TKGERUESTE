@@ -2281,6 +2281,24 @@ html,body,#root{
   border-bottom-right-radius: 0;
   background: linear-gradient(180deg, var(--brand-magenta) 0%, var(--brand-violet) 50%, var(--brand-orange) 100%) !important;
 }
+
+/* Strong override: remove any legacy red border coming from compiled main.css */
+.offcanvas__info,
+.offcanvas__info .offcanvas__wrapper,
+.offcanvas__info .mean-bar,
+.offcanvas__info .mobile-menu-wrapper,
+.offcanvas__info .offcanvas__wrapper *{
+  border-left: none !important;
+  border-color: transparent !important;
+}
+
+/* ensure our gradient bar sits above any remaining borders */
+.offcanvas__info .offcanvas__wrapper::before{
+  z-index: 5;
+}
+
+/* add padding so menu contents don't overlap the gradient bar */
+.offcanvas__info .offcanvas__content{ padding-left: 20px !important; }
 .offcanvas__info .offcanvas__content{
   background: transparent !important;
   color: var(--brand-ink) !important;
