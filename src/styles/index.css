@@ -1,0 +1,2238 @@
+:root{
+  --brand-orange:#FF9A3C;
+  --brand-coral:#F06543;
+  --brand-magenta:#C044D6;
+  --brand-violet:#7E2AE6;
+  --brand-ink:#2F2F2F;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,body,#root{
+  height:100%;
+}
+
+/* Glass utility */
+.glass{ background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); backdrop-filter: blur(10px); }
+
+/* Brand animated gradient */
+.brand-gradient{
+  /* Balanced mix: orange + coral + magenta + violet */
+  background: linear-gradient(90deg, var(--brand-orange) 0%, var(--brand-coral) 24%, var(--brand-magenta) 52%, var(--brand-violet) 88%);
+  background-size: 250% 250%;
+  color: #fff;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 24px rgba(34,22,80,0.05);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* small button variant used in feature cards */
+.btn-sm{
+  padding: 8px 12px !important;
+  font-size: 13px !important;
+  border-radius: 8px !important;
+}
+
+.animate-gradient-move{ animation: gradient-move 8s linear infinite; }
+
+@keyframes gradient-move{
+  0%{ background-position: 0% 50%; }
+  50%{ background-position: 100% 50%; }
+  100%{ background-position: 0% 50%; }
+}
+
+/* Section brand gradient wrapper */
+.section-brand-gradient{
+  /* Balanced section gradient for a softer mix */
+  background: linear-gradient(90deg, var(--brand-orange) 0%, var(--brand-coral) 26%, var(--brand-magenta) 56%, var(--brand-violet) 86%) !important;
+  background-size: 180% 180% !important;
+  background-position: 0% 50% !important;
+  animation: gradient-move 10s linear infinite !important;
+  will-change: background-position;
+  position: relative;
+}
+
+/* Ensure legacy .bg-color-1 doesn't override our gradient inside these sections */
+.section-brand-gradient .bg-color-1{
+  background: transparent !important;
+}
+
+/* In case elements use background-image overlays, keep them visible but transparent where needed */
+.section-brand-gradient .bg-image,
+.section-brand-gradient .bg-shape-1,
+.section-brand-gradient .bg-shape-2{
+  opacity: 0.08;
+}
+
+
+/* White boxes + black text for feature cards */
+.features-box-area{
+  background: white !important;
+  color: var(--brand-ink) !important;
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(22, 22, 35, 0.06);
+  position: relative;
+  overflow: hidden;
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+
+/* Make all feature cards equal height */
+.features-section .row > [class*="col-"]{
+  display: flex;
+  align-items: stretch;
+}
+.features-section .features-box-area{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Service tabs: make left tabs and right panel stretch to equal height */
+.service-tab-section .row {
+  align-items: stretch !important;
+}
+.service-tab-section .service-tab-btn-area{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.service-tab-section .service-tab-btn-area .nav{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.service-tab-section .service-tab-details-area{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.service-tab-section .tab-content{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+.service-tab-section .tab-pane{
+  display: flex;
+  flex: 1 1 auto;
+}
+.service-tab-section .service-tab-content{
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+}
+.service-tab-section .service-tab-content .image{
+  flex: 0 0 48%;
+}
+.service-tab-section .service-tab-content .content{
+  flex: 1 1 52%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Hover: subtle lift + animated gradient overlay */
+.features-box-area:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(22, 22, 35, 0.12);
+}
+.features-box-area::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: linear-gradient(90deg, var(--brand-magenta) 0%, var(--brand-violet) 40%, var(--brand-orange) 100%);
+  background-size: 180% 180%;
+  animation: gradient-move 8s linear infinite;
+  mix-blend-mode: normal;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .34s ease, transform .34s ease;
+  pointer-events: none;
+}
+.features-box-area:hover::before{
+  opacity: 0.18;
+  transform: translateY(0);
+}
+.features-box-area .brand-gradient{
+  transition: transform .35s ease, filter .35s ease;
+}
+.features-box-area:hover .brand-gradient{
+  transform: scale(1.06);
+  filter: brightness(1.02) saturate(1.03);
+}
+
+/* On hover, icon glyphs inside feature cards should be white for contrast */
+.features-box-area:hover .icon-box i,
+.features-box-area:hover .icon-box svg,
+.features-box-area:focus-within .icon-box i,
+.features-box-area:focus-within .icon-box svg{
+  color: #fff !important;
+  fill: #fff !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+
+/* Features: show icon glyphs with gradient (clip to text) so icons are colored by gradient even when container is gradient */
+.features-box-area .icon-box i,
+.features-box-area .icon-box svg{
+  /* Icons should be white by default when on gradient background */
+  color: #fff !important;
+  fill: #fff !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+.features-box-area:hover .icon-box i,
+.features-box-area:focus-within .icon-box i{
+  /* keep gradient visible on hover/focus */
+  background-position: 0% 50% !important;
+  color: transparent !important;
+}
+
+/* Stronger override: when feature card is hovered or focused, force icon glyph to white */
+.features-box-area:hover .icon-box i,
+.features-box-area:hover .icon-box svg,
+.features-box-area:focus-within .icon-box i,
+.features-box-area:focus-within .icon-box svg{
+  color: #fff !important;
+  fill: #fff !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+
+/* About: make Call Us icon glyph use gradient (icon itself colored), container can remain gradient/white per design */
+.about-2-section .about-2-btn-area .call-us .icon-1 i,
+.about-2-section .about-2-btn-area .call-us .icon-1 svg{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .animate-gradient-move{ animation: none !important }
+  .section-brand-gradient{ background-position: 0% 50% !important }
+}
+
+/* Process section: apply brand gradient to sub-title, icons and hover states */
+.work-process-section .section-sub-title{
+  background: linear-gradient(90deg, var(--brand-coral) 10%, var(--brand-magenta) 50%, var(--brand-violet) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Testimonial: apply brand gradient to sub-title, stars, quote icon, arrows and contact form background */
+.testimonials-section .title-box .section-sub-title{
+  background: linear-gradient(90deg, var(--brand-coral) 10%, var(--brand-magenta) 50%, var(--brand-violet) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Counter section: gradient icons */
+.icon-box-counter-section .icon-box{
+  width: 96px;
+  height: 96px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--brand-coral) 10%, var(--brand-magenta) 50%, var(--brand-violet) 90%);
+  background-size: 180% 180%;
+  animation: gradient-move 8s linear infinite;
+  box-shadow: 0 12px 30px rgba(34,22,80,0.04);
+  margin: 0 auto 18px auto;
+}
+.icon-box-counter-section .icon-box i{
+  color: #fff;
+  font-size: 34px;
+}
+.testimonials-section .rating-list li i{
+  color: var(--brand-orange);
+  text-shadow: none;
+}
+.testimonials-section .autor-upper .icon-1{
+  background: linear-gradient(90deg, var(--brand-coral) 10%, var(--brand-magenta) 50%, var(--brand-violet) 90%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.testimonials-section .common-slider-navigation button{
+  border: 2px solid rgba(0,0,0,0.06);
+  background: white;
+  color: var(--brand-ink);
+}
+.testimonials-section .common-slider-navigation button i{
+  background: linear-gradient(90deg, var(--brand-magenta) 10%, var(--brand-violet) 50%, var(--brand-orange) 90%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.testimonials-section .contact-from{
+  background: linear-gradient(90deg, var(--brand-orange) 0%, var(--brand-coral) 25%, var(--brand-magenta) 60%);
+  padding: 40px;
+  border-radius: 6px;
+}
+
+.work-process-section .work-process-box .icon-box{
+  background: linear-gradient(90deg, var(--brand-coral) 10%, var(--brand-magenta) 50%, var(--brand-violet) 90%);
+  background-size: 180% 180%;
+  animation: gradient-move 8s linear infinite;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 999px;
+  margin: 0 auto;
+  box-shadow: 0 12px 30px rgba(34,22,80,0.04);
+  transition: transform .28s ease, box-shadow .28s ease;
+  position: relative; /* ensure children positioned correctly */
+}
+
+.work-process-section .work-process-box .icon-box i{
+  color: #fff;
+  font-size: 26px;
+}
+
+/* Ensure icon fonts/pseudo-elements inside process icons render correctly
+   force the icon font family and make ::before inherit visible white color */
+.work-process-section .work-process-box .icon-box i{
+  /* Use the IcoMoon font as provided by project's icomoon.css */
+  font-family: 'IcoMoon' !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+  position: relative !important;
+  z-index: 2 !important; /* keep glyph above pseudo elements */
+}
+.work-process-section .work-process-box .icon-box i::before,
+.work-process-section .work-process-box .icon-box i:before{
+  font-family: 'IcoMoon' !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+.work-process-section .work-process-box .icon-box svg{
+  display: inline-block !important;
+  color: #fff !important;
+  fill: #fff !important;
+  stroke: #fff !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Ensure pseudo/background is behind the icon */
+.work-process-section .work-process-box .icon-box::before{
+  z-index: 1 !important;
+}
+
+/* Ensure process icons are visible by default and turn black on hover (override old orange) */
+.work-process-section .work-process-box .icon-box i,
+.work-process-section .work-process-box .icon-box svg{
+  color: #fff !important;
+  fill: #fff !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+.work-process-section .work-process-box:hover .icon-box i,
+.work-process-section .work-process-box:hover .icon-box svg{
+  /* keep glyphs white on hover for contrast against dark background */
+  color: #fff !important;
+  fill: #fff !important;
+  stroke: #fff !important;
+  opacity: 1 !important;
+}
+
+/* Styles for lucide-react (SVG) icons rendered inside .icon-graphic */
+.work-process-section .work-process-box .icon-box .icon-number{
+  /* center number within icon box */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(20px, 3.5vw, 32px);
+  font-weight: 800;
+  color: #fff;
+  background: none !important;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  z-index: 3;
+}
+
+/* Remove unintended left margin and ensure true centering */
+.work-process-section .work-process-box .icon-box .icon-number{
+  margin-left: 0 !important;
+  box-sizing: border-box !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+.work-process-section .work-process-box .icon-box span{
+  /* number badge: use text-gradient for the number */
+  display: inline-block;
+  margin-left: 8px;
+  background: linear-gradient(90deg, var(--brand-coral) 10%, var(--brand-magenta) 50%, var(--brand-violet) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.work-process-section .work-process-box:hover .icon-box{
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 22px 48px rgba(34,22,80,0.08);
+  /* Make hover state dark (brand ink) instead of orange */
+  background: var(--brand-ink) !important;
+  background-image: none !important;
+}
+
+.work-process-section .work-process-box:hover .icon-box span{
+  /* show number badge in orange on hover */
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  color: #fff !important;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .work-process-section .work-process-box .icon-box{ animation: none !important }
+}
+
+/* Override legacy pseudo-element hover background (from main.css) to use brand orange */
+.work-process-section .work-process-box .icon-box:before{
+  background: var(--brand-ink) !important;
+}
+.work-process-section .work-process-box:hover .icon-box:before{
+  background: var(--brand-ink) !important;
+}
+
+/* Text gradient utility */
+.text-gradient{
+  /* Text gradient weighted towards orange for better legibility */
+  background: linear-gradient(90deg, var(--brand-orange) 0%, var(--brand-coral) 35%, var(--brand-magenta) 65%, var(--brand-violet) 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .animate-gradient-move{ animation: none !important }
+  .animate-fade-up{ animation: none !important }
+  /* framer-motion: remove transitions that rely on JS */
+  * { transition: none !important; animation: none !important }
+}
+
+/* Service section: nav-tabs & buttons use brand gradient on hover/active */
+.service-tab-section .nav-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: var(--brand-ink);
+  background: transparent;
+  transition: all .25s ease;
+}
+.service-tab-section .nav-link .icon-box{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+}
+
+/* Service: icon glyphs use brand gradient (clip to text) so glyphs appear gradient-colored */
+.service-tab-section .nav-link .icon-box i,
+.service-tab-section .nav-link .icon-box svg{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+.service-tab-section .nav-link.active .icon-box i,
+.service-tab-section .nav-link.active .icon-box svg{
+  /* keep gradient visible for active state */
+  color: transparent !important;
+}
+.service-tab-section .nav-link{
+  position: relative;
+  overflow: hidden;
+  transition: color .25s ease, box-shadow .25s ease, transform .18s ease;
+}
+
+.service-tab-section .nav-link::before{
+  content: "";
+  position: absolute;
+  inset: -4px; /* allow slight bleed for gradient border effect */
+  z-index: 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  padding: 2px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .34s ease, transform .34s ease;
+  pointer-events: none;
+}
+
+/* Ensure inner content sits above the subtle gradient layer */
+.service-tab-section .nav-link *{
+  position: relative;
+  z-index: 1;
+}
+
+.service-tab-section .nav-link:hover,
+.service-tab-section .nav-link.active{
+  /* keep background transparent and show subtle gradient via ::before */
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--brand-ink) !important;
+  box-shadow: 0 6px 18px rgba(22,22,35,0.06);
+}
+
+.service-tab-section .nav-link:hover::before,
+.service-tab-section .nav-link.active::before{
+  opacity: 0.18; /* match features hover subtle gradient */
+  transform: translateY(0);
+}
+.service-tab-section .nav-link:hover .icon-box,
+.service-tab-section .nav-link.active .icon-box{
+  background: rgba(0,0,0,0.04) !important;
+}
+
+/* Ensure the pointer arrow on the left tabs is white (override theme-color) */
+.service-tab-btn-area ul .nav-link:before,
+.service-tab-btn-area ul .nav-link.active:before {
+  background: white !important;
+  background-image: none !important;
+}
+
+/* Hide the triangular arrow on the active tab to keep a clean active state */
+.service-tab-btn-area ul .nav-link.active:before,
+.service-tab-btn-area ul .nav-link.tab-active-gradient:before {
+  display: none !important;
+}
+
+/* Swiper pagination bullets: use subtle white for inactive and brand gradient for active */
+.swiper-pagination-bullet{
+  width: 10px !important;
+  height: 10px !important;
+  background: rgba(255,255,255,0.22) !important;
+  opacity: 1 !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  transition: transform .18s ease, background .22s ease, box-shadow .18s ease !important;
+}
+.swiper-pagination-bullet:hover,
+.swiper-pagination-bullet:focus{
+  transform: scale(1.08) !important;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  box-shadow: 0 8px 22px rgba(34,22,80,0.12) !important;
+  transform: scale(1.18) !important;
+  border: none !important;
+}
+
+.service-tab-section .primary-btn-4,
+.service-tab-section .primary-btn-1{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 12px;
+  color: #fff !important;
+  border: none !important;
+  background: linear-gradient(90deg, var(--brand-magenta) 0%, var(--brand-violet) 40%, var(--brand-orange) 100%) !important;
+  background-size: 200% 200% !important;
+  animation: gradient-move 6s ease infinite;
+  box-shadow: 0 12px 30px rgba(34,22,80,0.08);
+}
+
+/* Specific override for the hero 'Alle Leistungen' button in the service title area */
+.service-tab-title-area .primary-btn-4,
+.service-tab-title-area .primary-btn-4.btn-hover{
+  padding: 14px 28px !important;
+  min-width: 220px !important;
+  border-radius: 14px !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  background-image: none !important;
+  background-color: var(--brand-magenta); /* fallback; hover will set theme color */
+}
+.service-tab-title-area .primary-btn-4.btn-hover:hover,
+.service-tab-title-area .primary-btn-4.btn-hover:focus{
+  background: var(--theme-color-1) !important;
+  background-image: none !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: 0 12px 30px rgba(34,22,80,0.08) !important;
+  transform: translateY(-2px) !important;
+}
+.service-tab-title-area .primary-btn-4 span{
+  color: #fff !important;
+}
+
+/* Make primary action buttons larger and avoid clipping of decorative spans */
+.service-tab-section .primary-btn-4,
+.primary-btn-4{
+  padding: 14px 28px !important;
+  min-width: 220px !important;
+  border-radius: 14px !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  overflow: visible !important; /* ensure inner absolute spans are visible */
+}
+.service-tab-section .primary-btn-4 span,
+.primary-btn-4 span{
+  position: absolute;
+  display: inline-block;
+  /* keep decorative span visible and not affect layout */
+}
+
+/* Project section: hover title and icon/button use animated brand gradient */
+.project-slider-two-section .project-two-title-area .section-sub-title.text-gradient{
+  /* already uses text-gradient class */
+}
+.project-slider-two-section .project-two-title-area .section-title,
+.project-slider-two-section .project-two-title-area .section-sub-title{
+  transition: color .25s ease, background .25s ease;
+}
+/* Increase top heading size in Project section */
+.project-slider-two-section .project-two-title-area .section-title{
+  font-size: 40px !important;
+  line-height: 1.05 !important;
+  font-weight: 800 !important;
+}
+/* on hover: switch title color from red to animated brand gradient */
+.project-slider-two-section .project-slider-two-box:hover .content .inner-box h5{
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  transition: filter .18s ease, background-position .4s ease;
+}
+
+/* Project inner page titles (grid) - same behaviour: red -> gradient on hover */
+.project-slider-area .title-area h5{
+  color: var(--brand-coral) !important;
+  background: none !important;
+}
+.project-slider-area:hover .title-area h5{
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* Ensure inner box subtitle is black */
+.project-slider-two-section .project-slider-two-box .content .inner-box span{
+  color: var(--brand-ink) !important;
+}
+
+/* Icon button styling: keep gradient and add hover lift */
+.project-slider-two-section .project-slider-two-box .icon-1{
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.project-slider-two-section .project-slider-two-box .icon-1:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(34,22,80,0.08);
+}
+
+/* Services: icon glyphs use brand gradient by default; on card hover the container shows gradient and glyph turns white */
+.service-slider-area .icon-box i,
+.service-slider-area .icon-box svg{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  transition: color .18s ease, transform .18s ease, background-position .4s ease;
+}
+.service-slider-area .icon-box{
+  width:64px;
+  height:64px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  background: rgba(0,0,0,0.03);
+  transition: background .2s ease, box-shadow .2s ease, transform .18s ease;
+}
+.service-slider-area:hover .icon-box{
+  /* keep no background change on hover; only lift the container slightly */
+  background: none !important;
+  border-color: transparent !important;
+  box-shadow: 0 8px 20px rgba(16,32,57,0.04);
+  transform: translateY(-6px);
+}
+.service-slider-area:hover .icon-box i,
+.service-slider-area:hover .icon-box svg{
+  /* glyph color on white background should be dark for contrast */
+  color: var(--brand-ink) !important;
+  fill: var(--brand-ink) !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+
+/* Override for ServiceArea: remove gradient backgrounds, use white bg and black border for icon boxes */
+.service-slider-area .icon-box{
+  background: #fff !important;
+  border: 1px solid var(--brand-ink) !important;
+  box-shadow: 0 8px 20px rgba(16,32,57,0.04);
+}
+.service-slider-area .icon-box i,
+.service-slider-area .icon-box svg{
+  /* ensure glyphs are black (no gradient) */
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  color: var(--brand-ink) !important;
+  fill: var(--brand-ink) !important;
+}
+.service-slider-area:hover .icon-box{
+  background: #fff !important;
+  border-color: var(--brand-ink) !important;
+  transform: translateY(-6px);
+}
+.service-slider-area .icon-box:before{
+  content: none !important;
+}
+
+/* Show glyph icons in service cards as brand gradient (uses background-clip on text) */
+/* Strong override: icon containers must NOT show any gradient background on hover or default.
+   Icons (glyphs) themselves should use gradient via background-clip and remain gradient on hover. */
+.service-slider-area .icon-box{
+  background: none !important;
+  background-image: none !important;
+  border: 1px solid var(--brand-ink) !important;
+  box-shadow: none !important;
+}
+.service-slider-area .icon-box i,
+.service-slider-area .icon-box svg{
+  /* glyphs are filled via gradient text clip */
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  fill: transparent !important;
+}
+.service-slider-area:hover .icon-box{
+  /* do NOT change background on hover */
+  background: none !important;
+  background-image: none !important;
+  border-color: var(--brand-ink) !important;
+  transform: translateY(-6px);
+}
+.service-slider-area:hover .icon-box i,
+.service-slider-area:hover .icon-box svg{
+  /* keep glyph gradient visible on hover */
+  color: transparent !important;
+  fill: transparent !important;
+  -webkit-background-clip: text !important;
+}
+
+/* Override legacy pseudo-element (red border) for icon boxes in service cards */
+.service-slider-area .icon-box:before{
+  content: none !important;
+}
+.service-slider-area:hover .icon-box:before{
+  content: none !important;
+}
+.project-slider-two-section .project-two-title-area .brand-gradient{
+  /* ensure top button uses brand gradient already applied */
+}
+
+/* Project: make the small red action button use brand gradient and white arrow */
+.project-slider-two-section .project-slider-two-box .icon-1{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  color: #fff !important;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:52px;
+  height:52px;
+  border-radius:10px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+/* Enforce consistent image sizes across cards and carousels */
+.service-tab-section .service-tab-content .image img,
+.service-slider-area .image img,
+.project-slider-two-box .image img,
+.project-slider-area .image img,
+.blog-image img,
+.project-slider-area img,
+.project-slider-two-box img{
+  width: 100% !important;
+  height: 420px !important; /* unified card image height */
+  object-fit: cover !important;
+  display: block !important;
+}
+
+@media (max-width: 992px){
+  .service-tab-section .service-tab-content .image img,
+  .service-slider-area .image img,
+  .project-slider-two-box .image img,
+  .blog-image img{
+    height: 260px !important;
+  }
+}
+
+/* Service area: make all cards equal height */
+.service-page-section .service-slider-area{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.service-page-section .service-slider-area .image{
+  flex: 0 0 auto;
+}
+.service-page-section .service-slider-area .content{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.service-page-section .service-slider-area .content p{
+  flex: 1 1 auto;
+}
+
+/* Custom multiselect styles for testimonial form */
+.custom-multiselect > button{
+  background: #0f1724; /* dark navy */
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.06);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.custom-multiselect-dropdown{
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 6px;
+}
+.custom-multiselect-dropdown label{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.custom-multiselect-dropdown label:hover{
+  background: linear-gradient(90deg, rgba(192,68,214,0.06), rgba(126,42,230,0.06));
+}
+.custom-multiselect-dropdown input[type="checkbox"]{
+  width: 16px;
+  height: 16px;
+}
+.custom-multiselect .form-help{
+  color: rgba(47,47,47,0.6);
+  font-size: 13px;
+}
+
+/* small improvement: ensure dropdown scroll looks neat */
+.custom-multiselect-dropdown::-webkit-scrollbar{ width: 10px; height:10px }
+.custom-multiselect-dropdown::-webkit-scrollbar-thumb{ background: rgba(0,0,0,0.12); border-radius: 999px }
+
+/* Testimonial form submit button: hover -> black */
+.testimonials_btn .primary-btn-4.btn-hover:hover{
+  background: #000 !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12) !important;
+}
+.project-slider-two-section .project-slider-two-box .icon-1 i{
+  color: #fff !important;
+}
+.project-slider-two-section .project-slider-two-box .icon-1:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(34,22,80,0.08);
+}
+
+/* Blog: ensure primary-btn-1 looks good as brand gradient */
+.blog-two-section .primary-btn-1.brand-gradient{
+  padding: 12px 20px;
+  border-radius: 12px;
+  color: #fff !important;
+  box-shadow: 0 12px 30px rgba(34,22,80,0.06);
+}
+
+/* Sidebar-specific overrides: replace legacy red with brand gradient */
+.blog-sidebar .blog-widget-title.p-relative{
+  position: relative;
+}
+.blog-sidebar .blog-widget-title.p-relative::after{
+  content: "" !important;
+  display: block !important;
+  width: 48px !important;
+  height: 3px !important;
+  margin-top: 10px !important;
+  background-color: transparent !important;
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  background-size: 200% 100% !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+
+/* Calendar / meta icons in sidebar — show gradient glyphs */
+.blog-sidebar .blog-post-sidebar .content span i,
+.blog-sidebar .blog-post-sidebar .content span .fal{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Recent post title hover: gradient text */
+.blog-sidebar .blog-sidebar-post-title a:hover{
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Sidebar CTA button: use brand gradient by default, darker ink on hover */
+.blog-sidebar .primary-btn-1.btn-hover{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  color: #fff !important;
+  border: none !important;
+}
+.blog-sidebar .primary-btn-1.btn-hover:hover{
+  background: var(--brand-ink) !important;
+  color: #fff !important;
+}
+
+/* Telephone icon in sidebar: glyph uses gradient (text-clip) */
+/* Telephone icon: white glyph on brand-gradient background */
+.blog-sidebar .service-widget-2 .icon-box{
+  width:64px;
+  height:64px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  box-shadow: 0 8px 20px rgba(16,32,57,0.06);
+  margin: 0 auto 12px auto;
+}
+.blog-sidebar .service-widget-2 .icon-box i,
+.blog-sidebar .service-widget-2 .icon-box .fal{
+  color: #fff !important;
+  font-size: 20px;
+}
+
+/* Ensure phone CTA text remains readable and uses gradient on hover */
+.blog-sidebar .service-widget-2 a.phone{
+  color: #fff !important;
+  font-weight: 600;
+  display: inline-block;
+}
+.blog-sidebar .service-widget-2 a.phone:hover{
+  opacity: 0.95;
+}
+
+/* Tags (Stichworte): use brand gradient buttons instead of red */
+.blog-sidebar .tagcloud a{
+  display: inline-block;
+  margin: 0 8px 8px 0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  color: #fff !important;
+  text-decoration: none;
+}
+.blog-sidebar .tagcloud a:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(16,32,57,0.06);
+}
+
+/* Blog: change 'Read MORE' red button to brand gradient */
+.blog-style-two .primary-btn-5,
+.blog-two-section .blog-style-two .primary-btn-5{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 12px 30px rgba(34,22,80,0.06);
+}
+.blog-style-two .primary-btn-5:hover,
+.blog-two-section .blog-style-two .primary-btn-5:hover{
+  transform: translateY(-2px);
+}
+
+/* On hover the Read MORE button should switch to black background with white text */
+.blog-style-two .primary-btn-5:hover,
+.blog-two-section .blog-style-two .primary-btn-5:hover{
+  background: var(--brand-ink) !important;
+  color: #fff !important;
+}
+
+/* Stronger override for legacy theme hover rules: ensure blog Read MORE uses our styles */
+.blog-style-two .primary-btn-5,
+.blog-style-two .primary-btn-5.btn-hover,
+.blog-two-section .blog-style-two .primary-btn-5,
+.blog-two-section .blog-style-two .primary-btn-5.btn-hover{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  color: #fff !important;
+  border: none !important;
+}
+.blog-style-two .primary-btn-5.btn-hover:hover,
+.blog-style-two .primary-btn-5:hover,
+.blog-two-section .blog-style-two .primary-btn-5.btn-hover:hover,
+.blog-two-section .blog-style-two .primary-btn-5:hover{
+  background: var(--brand-ink) !important;
+  color: #fff !important;
+}
+
+/* Strongest override to replace legacy red hover coming from compiled layout.css */
+/* Targets various specificity combos including .btn-hover, .primary-btn-5, and span inside */
+.blog-style-two .primary-btn-5.btn-hover:hover,
+.blog-style-two .primary-btn-5:hover,
+.blog-two-section .blog-style-two .primary-btn-5.btn-hover:hover,
+.blog-two-section .blog-style-two .primary-btn-5:hover,
+.blog-style-two .primary-btn-5.btn-hover:hover span,
+.blog-style-two .primary-btn-5:hover span,
+.blog-two-section .blog-style-two .primary-btn-5.btn-hover:hover span,
+.blog-two-section .blog-style-two .primary-btn-5:hover span{
+  /* animated gradient on hover instead of red */
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: padding-box !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+/* If compiled CSS sets background-color directly (rgb red), override it specifically */
+.blog-style-two .primary-btn-5.btn-hover:hover,
+.blog-style-two .primary-btn-5:hover {
+  background-color: transparent !important;
+}
+
+/* Smooth transition for hover */
+.blog-style-two .primary-btn-5,
+.blog-two-section .blog-style-two .primary-btn-5{
+  transition: background .22s ease, transform .18s ease, color .18s ease;
+}
+
+/* Blog card meta icons (author, calendar) use brand gradient */
+.blog-two-section .post-meta i,
+.blog-two-section .post-meta .fal {
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Blog title: on hover change from red to brand text-gradient */
+.blog-style-two .blog-title a:hover,
+.blog-two-section .blog-style-two .blog-title a:hover{
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* Footer latest post: calendar icon gradient + title hover gradient */
+.footer-main .footer-widget-3 .blog-list .date,
+.footer-main .footer-widget-3 .blog-list .date a{
+  color: #fff !important;
+}
+/* calendar icon: support inline <i>, .fal and pseudo-elements */
+.footer-main .footer-widget-3 .blog-list .date i,
+.footer-main .footer-widget-3 .blog-list .date .fal,
+.footer-main .footer-widget-3 .blog-list .date:before,
+.footer-main .footer-widget-3 .blog-list .date a:before{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+.footer-main .footer-widget-3 .blog-list .content h6 a{
+  color: #fff !important;
+  transition: color .18s ease, transform .18s ease;
+}
+.footer-main .footer-widget-3 .blog-list li:hover .content h6 a,
+.footer-main .footer-widget-3 .blog-list li:focus .content h6 a{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+/* Make footer full width: ensure footer-main stretches and small-container uses full-width columns */
+.footer-main{
+  width: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+.footer-main .footer-links li{ list-style: none; }
+.footer-main .footer-links li a,
+.footer-main .footer-links li a:link,
+.footer-main .footer-links li a:visited{
+  color: #fff !important;
+  display: block;
+  padding: 6px 0;
+  opacity: 1 !important;
+  text-decoration: none;
+}
+
+.footer-main .latest-post-widget .post-item h6{
+  color: #fff !important;
+  margin: 0;
+  font-size: 15px;
+}
+.footer-main .latest-post-widget .post-item .text-sm{
+  color: rgba(255,255,255,0.65) !important;
+  font-size: 13px;
+}
+.footer-main .latest-post-widget .post-item img{
+  border-radius: 6px;
+}
+.footer-main .small-container{
+  max-width: 1200px;
+  width: calc(100% - 40px);
+  margin: 0 auto;
+}
+
+/* Footer bottom: terms/privacy default white, hover shows brand gradient */
+.footer-main .footer-bottom .right-area a{
+  color: #fff !important;
+  transition: color .18s ease, background .22s ease, transform .12s ease;
+}
+.footer-main .footer-bottom .right-area a:hover,
+.footer-main .footer-bottom .right-area a:focus{
+  /* text-only gradient (no background box) */
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  background-color: transparent !important;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  display: inline-block;
+}
+
+/* Our Services links in footer: default white, hover/active gradient for text and leading icon */
+.footer-main .service-list li a{
+  color: #fff !important;
+  display: inline-block;
+  transition: color .18s ease, transform .12s ease, background .18s ease;
+  background: none !important;
+  -webkit-text-fill-color: #fff !important;
+}
+.footer-main .service-list li a:before,
+.footer-main .service-list li:before{
+  color: #fff !important;
+  display: inline-block;
+  -webkit-text-fill-color: #fff !important;
+}
+.footer-main .service-list li a:hover,
+.footer-main .service-list li a:focus,
+.footer-main .service-list li a.active{
+  /* keep text visible in white, animate/indicate hover via gradient on the leading icon */
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  background: none !important;
+}
+.footer-main .service-list li a:hover:before,
+.footer-main .service-list li a:focus:before,
+.footer-main .service-list li a.active:before,
+.footer-main .service-list li:hover:before{
+  /* make the leading bullet/icon show the brand gradient */
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
+/* Footer social icons: default white on transparent box; hover = gradient background + white icon */
+.footer-main .footer-socials a,
+.footer-main .footer-socials span{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px;
+  background: transparent;
+  transition: background .22s ease, transform .18s ease, border-color .18s ease;
+}
+.footer-main .footer-socials a i,
+.footer-main .footer-socials a svg,
+.footer-main .footer-socials span i,
+.footer-main .footer-socials span svg{
+  color: #fff !important;
+  fill: #fff !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  font-size: 16px;
+}
+.footer-main .footer-socials a:hover,
+.footer-main .footer-socials a:focus,
+.footer-main .footer-socials span:hover,
+.footer-main .footer-socials span:focus{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  border-color: transparent !important;
+  transform: translateY(-3px);
+}
+.footer-main .footer-socials a:hover i,
+.footer-main .footer-socials a:hover svg,
+.footer-main .footer-socials span:hover i,
+.footer-main .footer-socials span:hover svg{
+  color: #fff !important;
+  fill: #fff !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+
+.service-tab-section .primary-btn-4:hover,
+.service-tab-section .primary-btn-1:hover{
+  transform: translateY(-2px);
+  /* override legacy red hover: dark theme color */
+  background: var(--theme-color-1) !important;
+  color: #fff !important;
+}
+
+/* Stronger overrides for btn-hover variants (legacy CSS may target .btn-hover specifically) */
+.service-tab-section .primary-btn-4.btn-hover:hover,
+.service-tab-section .primary-btn-4.btn-hover:focus,
+.service-tab-section .primary-btn-1.btn-hover:hover,
+.service-tab-section .primary-btn-1.btn-hover:focus{
+  background: var(--theme-color-1) !important;
+  background-image: none !important;
+  background-color: var(--theme-color-1) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+.service-tab-section .primary-btn-4.btn-hover:hover span,
+.service-tab-section .primary-btn-1.btn-hover:hover span{
+  color: #fff !important;
+  background-image: none !important;
+}
+
+/* Ensure any inner span or pseudo used by legacy CSS also follows theme color on hover */
+.primary-btn-4.btn-hover:hover span,
+.primary-btn-4:hover span,
+.primary-btn-4.btn-hover:focus span,
+.primary-btn-4:focus span{
+  background: var(--theme-color-1) !important;
+  background-color: var(--theme-color-1) !important;
+  color: #fff !important;
+}
+
+/* Remove legacy colored pseudo elements used by compiled CSS */
+.primary-btn-4.btn-hover:hover::before,
+.primary-btn-4.btn-hover:hover::after,
+.primary-btn-4:hover::before,
+.primary-btn-4:hover::after,
+.primary-btn-4.btn-hover:focus::before,
+.primary-btn-4.btn-hover:focus::after,
+.primary-btn-4:focus::before,
+.primary-btn-4:focus::after{
+  background: none !important;
+  background-image: none !important;
+  content: none !important;
+}
+
+
+@import "react-toastify/dist/ReactToastify.css";
+@import 'react-modal-video/css/modal-video.css';
+@import "swiper/css/bundle";
+@import "yet-another-react-lightbox/styles.css";
+
+@import "../../public/assets/css/bootstrap.min.css";
+@import "../../public/assets/css/meanmenu.min.css";
+@import "../../public/assets/css/animate.css";
+@import "../../public/assets/css/fontawesome-pro.css";
+@import "../../public/assets/css/icomoon.css";
+@import "../../public/assets/css/spacing.css";
+@import "../../public/assets/css/main.css";
+
+/* Override default section-sub-title icon (from main.css) to use brand gradient */
+.section-sub-title:before{
+  /* remove solid border and fill the icon with gradient color */
+  border: none !important;
+  background: linear-gradient(90deg, var(--brand-coral) 10%, var(--brand-magenta) 55%, var(--brand-violet) 90%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Banner subtitle small pill: gradient text + gradient border */
+.banner-sub-title:before{
+  content: "\e92c"; /* icon code (legacy icomoon) */
+  font-family: 'icomoon';
+  position: absolute;
+  top: 0px;
+  left: -56px;
+  height: 20px;
+  width: 40px;
+  padding: 2px 1px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-radius: 50px;
+  /* gradient text */
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* gradient border using border-image */
+  border: 1px solid transparent !important;
+  -webkit-border-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) 1;
+  border-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) 1;
+}
+
+/* Breadcrumb: make breadcrumb menu text use brand gradient instead of red */
+.breadcrumb__area .breadcrumb__menu ul li span a,
+.breadcrumb__area .breadcrumb__menu ul li span{
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+/* Ensure breadcrumb links keep contrast on hover */
+.breadcrumb__area .breadcrumb__menu ul li span a:hover{
+  opacity: 0.95;
+}
+
+/* FAQ styling: subtitle and open question titles use brand gradient */
+.faq-page-section .title-box .section-sub-title.no-border{
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.faq-page-section .accordion .accordion-item .accordion-header .accordion-button{
+  color: var(--brand-ink);
+  background: none;
+  border: none;
+  padding: 18px 20px;
+  text-align: left;
+  width: 100%;
+  transition: color .18s ease, background .18s ease;
+}
+
+/* Open question title: show gradient */
+.faq-page-section .accordion .accordion-item .accordion-collapse.show + .accordion-body,
+.faq-page-section .accordion .accordion-item .accordion-header .accordion-button:not(.collapsed){
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+/* make sure the collapse body text remains readable */
+.faq-page-section .accordion .accordion-item .accordion-collapse .accordion-body{
+  color: rgba(47,47,47,0.9);
+}
+
+/* Ensure About list check icons use brand gradient (override main.css if necessary) */
+.about-2-content-area ul.list-area li:before{
+  content: "\e921";
+  font-family: 'icomoon';
+  position: relative;
+  top: 2px;
+  left: -10px;
+  font-size: 16px;
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+/* Services page: style the small section subtitle with brand text gradient */
+.service-page-section .section-sub-title{
+  background: linear-gradient(90deg, var(--brand-magenta) 10%, var(--brand-violet) 45%, var(--brand-orange) 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Choose section (e.g. choose-section.bg-color-1.section-space-top): make sub-title use brand gradient (replace previous red) */
+.choose-section .section-sub-title,
+.choose-section.bg-color-1 .section-sub-title,
+.choose-section.section-space-top .section-sub-title{
+  background: linear-gradient(90deg, var(--brand-coral) 0%, var(--brand-magenta) 45%, var(--brand-violet) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Choose section: icon-box styling - white background, gradient glyphs, hover shows gradient background and white glyph */
+.choose-section.bg-color-1.section-space-top .icon-box{
+  background: #fff !important;
+  border-radius: 8px;
+  width: 64px;
+  height: 64px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(16,32,57,0.04);
+  transition: background .22s ease, transform .18s ease, box-shadow .18s ease;
+}
+.choose-section.bg-color-1.section-space-top .icon-box i,
+.choose-section.bg-color-1.section-space-top .icon-box svg{
+  /* glyphs show gradient via text clipping */
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  fill: transparent !important;
+}
+.choose-section.bg-color-1.section-space-top .icon-box:hover{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(34,22,80,0.08);
+}
+.choose-section.bg-color-1.section-space-top .icon-box:hover i,
+.choose-section.bg-color-1.section-space-top .icon-box:hover svg{
+  /* glyph becomes white on gradient background */
+  color: #fff !important;
+  fill: #fff !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+
+/* Remove any red background/outline coming from legacy CSS on hover for choose-section icons */
+.choose-section.bg-color-1.section-space-top .icon-box:hover,
+.choose-section.bg-color-1.section-space-top .icon-box:focus{
+  background: none !important;
+  border: 1px solid rgba(0,0,0,0.04) !important;
+  box-shadow: 0 8px 20px rgba(16,32,57,0.04) !important;
+}
+.choose-section.bg-color-1.section-space-top .icon-box:before{
+  content: none !important;
+}
+
+/* Strong override: left award box and Call Us icon background in About section */
+.about-2-section .about-2-image-area .icon-box{
+  /* make the larger left image box a solid theme color (dark blue) */
+  background: var(--theme-color-1) !important;
+  border: none !important;
+}
+.about-2-section .about-2-image-area .icon-box .award-icon{
+  /* keep the small award-icon white with dark glyph */
+  background: #fff !important;
+  color: var(--brand-ink) !important;
+  box-shadow: 0 8px 20px rgba(16,32,57,0.06);
+}
+.about-2-section .about-2-image-area .icon-box .content h3,
+.about-2-section .about-2-image-area .icon-box .content p{
+  color: #fff !important; /* ensure visible on gradient */
+}
+
+.about-2-section .about-2-btn-area .call-us .icon-1{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  border: none !important;
+}
+.about-2-section .about-2-btn-area .call-us .icon-1 i{
+  color: #fff !important;
+}
+
+/* Make the whole Call Us block use the dark theme color instead of brand gradient */
+.about-2-section .about-2-btn-area .call-us{
+  background: var(--theme-color-1) !important;
+  padding: 10px 14px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.about-2-section .about-2-btn-area .call-us .content span{
+  color: rgba(255,255,255,0.9) !important;
+}
+.about-2-section .about-2-btn-area .call-us .content h5 a{
+  color: #fff !important;
+}
+
+/* Ensure any icon inside a brand-gradient + animate-gradient-move container is white */
+/* Icons inside gradient containers should be white for contrast */
+.brand-gradient.animate-gradient-move i,
+.brand-gradient.animate-gradient-move svg,
+.icon.brand-gradient.animate-gradient-move i,
+.icon.brand-gradient.animate-gradient-move svg,
+.about-2-image-area .icon.brand-gradient.animate-gradient-move i{
+  color: #fff !important;
+  fill: #fff !important;
+}
+
+/* Make the icon containers white instead of gradient in About section */
+.about-2-image-area .icon.brand-gradient.animate-gradient-move,
+.about-2-section .about-2-btn-area .call-us .icon-1.brand-gradient.animate-gradient-move{
+  /* keep these containers using the brand gradient and white icons */
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  box-shadow: 0 8px 20px rgba(16,32,57,0.06);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+/* Make the circular pseudo-border around the call icon use the brand ink (dark) instead of theme/red */
+.about-2-content-area .icon-1:before,
+.about-2-section .about-2-btn-area .call-us .icon-1:before{
+  border-color: var(--brand-ink) !important;
+}
+
+/* Header: gradient for nav links, active item, button and phone icon */
+.header-area .main-menu nav a{
+  transition: color .2s ease;
+}
+.header-area .main-menu nav a:hover,
+.header-area .main-menu nav a.active{
+  background: linear-gradient(90deg, var(--brand-magenta) 10%, var(--brand-violet) 50%, var(--brand-orange) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.header-area .main-menu nav a{
+  color: var(--brand-ink);
+}
+.header-area .primary-btn-1.btn-hover{
+  background: linear-gradient(90deg, var(--brand-magenta) 10%, var(--brand-violet) 50%, var(--brand-orange) 90%);
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 10px 30px rgba(34,22,80,0.06);
+}
+.header-area .primary-btn-1.btn-hover .icon-right-arrow{
+  color: #fff;
+}
+.header-area .header-link-1 .icon{
+  width:46px;
+  height:46px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  /* make icon container white but with a subtle black border per request */
+  background: #fff !important;
+  border: 1px solid var(--brand-ink) !important;
+}
+.header-area .header-link-1 .icon i{ color: var(--brand-ink) }
+.header-area .header-link-1 .content h6 a{
+  transition: color .18s ease;
+}
+.header-area .header-link-1 .content h6 a:hover{
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+/* Final header menu override: default items black, hover & active use brand gradient */
+.header-area .main-menu nav a {
+  color: var(--brand-ink) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+.header-area .main-menu nav a.active,
+.header-area .main-menu nav a[aria-current="page"]{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+/* Stronger, high-specificity rules to force active header link gradient (overrides legacy white color) */
+.header-area.header-style-two .main-menu nav a.active,
+.header-area.header-style-three .main-menu nav a.active,
+.header-area.header-style-two .main-menu nav a[aria-current="page"],
+.header-area.header-style-three .main-menu nav a[aria-current="page"]{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+.header-area .main-menu nav a:hover,
+.header-area .main-menu nav a:focus{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+/* Full-width map container style */
+.map-fullwidth{
+  width: 100%;
+  height: 420px;
+  margin-top: 40px;
+}
+.map-fullwidth iframe{
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Ensure sidebar contact icons keep consistent size and don't shrink */
+.contact-p-info-area .contact-box{
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.contact-p-info-area .contact-box .icon-1{
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+.contact-p-info-area .contact-box .icon-1 i{
+  font-size: 22px;
+  line-height: 1;
+}
+
+@media (max-width: 640px){
+  .contact-p-info-area .contact-box .icon-1{
+    flex: 0 0 52px;
+    width: 52px;
+    height: 52px;
+  }
+  .contact-p-info-area .contact-box .icon-1 i{
+    font-size: 18px;
+  }
+}
+
+/* Gallery marquee styles for FAQ page */
+.gallery-marquee{
+  overflow: hidden;
+  width: 100%;
+}
+.marquee-track{
+  display: flex;
+  gap: 18px;
+  animation: marquee 30s linear infinite;
+  align-items: center;
+}
+.marquee-item{
+  flex: 0 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #111;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+.marquee-item.large{
+  width: 520px;
+  height: 320px;
+}
+.marquee-item img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.marquee-item:not(.large){
+  width: 300px;
+  height: 180px;
+}
+
+@keyframes marquee{
+  0%{ transform: translateX(0); }
+  100%{ transform: translateX(-50%); }
+}
+
+@media (max-width: 768px){
+  .marquee-item.large{ width: 360px; height: 220px; }
+  .marquee-item{ width: 220px; height: 140px; }
+}
+
+/* Gallery grid (masonry-like) */
+.gallery-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+.gallery-grid .grid-item{
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0f0f0f;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+.gallery-grid .grid-item.large{
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.gallery-grid .grid-item img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@media (max-width: 992px){
+  .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid .grid-item.large{ grid-column: span 2; grid-row: span 1; }
+}
+@media (max-width: 640px){
+  .gallery-grid{ grid-template-columns: 1fr; }
+  .gallery-grid .grid-item.large{ grid-column: span 1; grid-row: span 1; }
+}
+
+/* Homepage project carousel: increase top spacing from previous section */
+.project-slider-two-section{
+  padding-top: 64px;
+}
+@media (max-width: 768px){
+  .project-slider-two-section{
+    padding-top: 40px;
+  }
+}
+
+/* Reduce phone text size to avoid wrapping in header and about call-us */
+.header-link-1 .content h6,
+.header-link-1 .content span{
+  font-size: 14px;
+  line-height: 1.15;
+}
+.header-link-1 .content h6 a{
+  display: inline-block;
+  white-space: nowrap;
+}
+.call-us .content h5,
+.call-us .content span{
+  font-size: 14px;
+  line-height: 1.15;
+}
+.call-us .content h5 a{
+  white-space: nowrap;
+}
+
+@media (max-width: 480px){
+  .header-link-1 .content h6,
+  .call-us .content h5{
+    font-size: 13px;
+  }
+}
+
+/* Swiper navigation buttons gradient */
+.service-gallery-swiper .swiper-button-next,
+.service-gallery-swiper .swiper-button-prev{
+  color: transparent; /* hide default */
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, var(--brand-orange, #ff7a00) 0%, var(--brand-violet, #7c3aed) 100%);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+/* tab active gradient outline */
+.tab-active-gradient{
+  position: relative;
+  z-index: 1;
+}
+.tab-active-gradient::after{
+  content: "";
+  position: absolute;
+  inset: -2px; /* subtle border spacing */
+  z-index: -1;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  padding: 1px; /* very thin border */
+  opacity: 0.10; /* make it subtle */
+  filter: blur(6px);
+}
+.tab-active-gradient{
+  background: rgba(255,255,255,0.01); /* keep button look */
+}
+
+/* Ensure active nav-link/tab shows white text regardless of other rules */
+.service-tab-section .nav-link.active,
+.service-tab-section .nav-link.tab-active-gradient,
+.service-tab-section .nav-link.active.tab-active-gradient{
+  color: #ffffff !important; /* active tab title should be white for contrast */
+}
+
+/* Ensure icon glyph becomes white on active tab for contrast */
+.service-tab-section .nav-link.active .icon-box i,
+.service-tab-section .nav-link.tab-active-gradient .icon-box i{
+  color: #ffffff !important;
+}
+
+/* If some rules set background to white on active/hover, keep the active gradient look but ensure text stays white */
+.service-tab-section .nav-link.active,
+.service-tab-section .nav-link.tab-active-gradient{
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* Ensure icon inside active tab becomes white */
+.service-tab-section .nav-link.active .icon-box i,
+.service-tab-section .nav-link.tab-active-gradient .icon-box i{
+  color: #ffffff !important;
+}
+
+/* make active tab title and icon white */
+.tab-active-gradient{
+  color: #ffffff !important;
+}
+.tab-active-gradient .icon-box i{
+  color: #ffffff !important;
+}
+
+/* Active service panel: white text for better contrast on dark bg */
+/* Active panel content should use dark text (black) on white panel */
+.service-tab-details-area .tab-pane.show .service-tab-content,
+.service-tab-details-area .tab-pane.active .service-tab-content{
+  color: #0b1220;
+}
+.service-tab-details-area .tab-pane.show .service-tab-content h4,
+.service-tab-details-area .tab-pane.active .service-tab-content h4{
+  color: #0b1220;
+}
+.service-tab-details-area .tab-pane.show .service-tab-content p,
+.service-tab-details-area .tab-pane.active .service-tab-content p{
+  color: rgba(11,18,32,0.85);
+}
+.service-gallery-swiper .swiper-button-next::after,
+.service-gallery-swiper .swiper-button-prev::after{
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+}
+.service-gallery-swiper .swiper-button-next::after{
+  border-right: 2px solid #fff;
+  border-top: 2px solid #fff;
+  transform: rotate(45deg);
+}
+.service-gallery-swiper .swiper-button-prev::after{
+  border-right: 2px solid #fff;
+  border-top: 2px solid #fff;
+  transform: rotate(-135deg);
+}
+
+/* Strong header adjustments requested: active & hover use text-gradient, not white */
+.header-area .main-menu nav a{
+  color: var(--brand-ink) !important;
+  background: none !important;
+}
+.header-area .main-menu nav a{ position: relative; }
+.header-area .main-menu nav a,
+.header-area .main-menu nav a.active,
+.header-area .main-menu nav a:hover,
+.header-area .main-menu nav a:focus{
+  /* remove legacy bottom border color (red) and replace with gradient underline */
+  border-bottom-color: transparent !important;
+}
+.header-area .main-menu nav a::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 3px;
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  background-size: 200% 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform .25s ease, opacity .18s ease;
+  opacity: 0;
+}
+.header-area .main-menu nav a:hover::after,
+.header-area .main-menu nav a:focus::after,
+.header-area .main-menu nav a.active::after,
+.header-area .main-menu nav a[aria-current="page"]::after{
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* Dropdown appearance improvements */
+.main-menu .submenu,
+.main-menu .submenu ul{
+  min-width: 180px;
+  background: #fff !important;
+  box-shadow: 0 10px 30px rgba(16,32,57,0.12);
+  border-radius: 8px;
+  padding: 8px 0;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .18s ease, transform .22s ease;
+  pointer-events: none;
+  z-index: 2000;
+}
+
+/* Prevent header containers from clipping dropdowns (fixes cut-off) */
+.header-area,
+.mega-menu-wrapper,
+.header-main,
+.large-container{
+  overflow: visible !important;
+  z-index: 1200;
+}
+
+/* Position submenu absolutely so it can overflow the header safely */
+.main-menu li.has-dropdown{
+  position: relative;
+}
+.main-menu .submenu{
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+}
+.main-menu li.has-dropdown:hover > .submenu,
+.main-menu li.has-dropdown:focus-within > .submenu{
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Keep submenu visible while hovering it (prevents flicker when moving pointer) */
+.main-menu li.has-dropdown > .submenu:hover{
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.main-menu .submenu li{
+  list-style: none;
+  padding: 4px 18px;
+}
+.main-menu .submenu li a{
+  color: var(--brand-ink) !important;
+  display: block;
+  padding: 8px 6px;
+  transition: background .18s ease, color .18s ease;
+}
+.main-menu .submenu li a:hover{
+  background: linear-gradient(90deg, rgba(124,42,230,0.06), rgba(192,68,214,0.06));
+  background-image: linear-gradient(90deg, var(--brand-magenta) 10%, var(--brand-violet) 60%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+.main-menu .submenu::before{
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 20px;
+  width: 12px;
+  height: 12px;
+  transform: rotate(45deg);
+  background: #fff !important;
+  box-shadow: 0 10px 30px rgba(16,32,57,0.06);
+}
+.header-area .main-menu nav a:hover,
+.header-area .main-menu nav a:focus,
+.header-area .main-menu nav a.active,
+.header-area .main-menu nav a[aria-current="page"]{
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* Call Us block: gradient icon, black border, black text; on hover number becomes gradient */
+.header-area .header-link-1{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.header-area .header-link-1 .icon{
+  width:46px;
+  height:46px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  border: 1px solid var(--brand-ink) !important;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.header-area .header-link-1 .icon i{ color: #fff !important; }
+.header-area .header-link-1 .content span,
+.header-area .header-link-1 .content h6 a{
+  color: var(--brand-ink) !important;
+}
+.header-area .header-link-1:hover .icon{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(34,22,80,0.06);
+}
+.header-area .header-link-1:hover .content h6 a{
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* Strong override: remove any lingering red border or pseudo-element on the icon
+   Some legacy CSS adds a colored pseudo-element or bottom-border; force it to our tokens */
+.header-area .header-link-1 .icon,
+.header-area .header-link-1 .icon *{
+  border-color: var(--brand-ink) !important;
+  border-bottom-color: var(--brand-ink) !important;
+}
+.header-area .header-link-1 .icon::before,
+.header-area .header-link-1 .icon::after{
+  content: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Contact page: change red texts/elements to brand gradient */
+.contact-page-section .title-box .section-sub-title{
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.contact-page-section .contact-p-info-area .contact-box{
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 18px 0;
+}
+
+/* icon container: gradient background, white glyph */
+.contact-page-section .contact-p-info-area .contact-box .icon-1{
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  box-shadow: 0 8px 20px rgba(16,32,57,0.06);
+}
+.contact-page-section .contact-p-info-area .contact-box .icon-1 i{
+  color: #fff !important;
+  font-size: 20px;
+}
+
+/* contact titles (Location, Call Us 7/24, Make A quote) use text gradient */
+.contact-page-section .contact-p-info-area .contact-box .info span{
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  font-weight: 600;
+}
+
+/* Make sure contact info (the link/text) is readable and not gradient */
+.contact-page-section .contact-p-info-area .contact-box .info h4 a{
+  color: var(--brand-ink) !important;
+}
+
+/* Contact form submit button: use brand gradient background instead of red */
+.contact-page-section .primary-btn-1.btn-hover{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 12px 30px rgba(34,22,80,0.06);
+}
+
+/* on hover, slightly lift */
+.contact-page-section .primary-btn-1.btn-hover:hover{
+  transform: translateY(-2px);
+}
+
+/* Strong enforcement: ensure active header link is rendered as text-gradient (not white) across themes */
+.header-area .main-menu nav a.active,
+.header-area .main-menu nav a[aria-current="page"],
+.header-area.header-style-two .main-menu nav a.active,
+.header-area.header-style-three .main-menu nav a.active,
+.header-area.header-style-two .main-menu nav a[aria-current="page"],
+.header-area.header-style-three .main-menu nav a[aria-current="page"]{
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* Styled select for contact form (clean, accessible) */
+.contact-page-section .styled-select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  padding: 12px 40px 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(16,32,57,0.06);
+  background: #fff;
+  color: var(--brand-ink);
+  box-shadow: 0 6px 18px rgba(16,32,57,0.04);
+  font-size: 15px;
+}
+.contact-page-section .select-wrapper{
+  position: relative;
+}
+.contact-page-section .select-wrapper::after{
+  content: "\25BC"; /* down chevron */
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: rgba(47,47,47,0.6);
+  font-size: 12px;
+}
+.contact-page-section .styled-select:focus{
+  outline: none;
+  box-shadow: 0 8px 30px rgba(34,22,80,0.08);
+  border-color: rgba(126,42,230,0.6);
+}
+
+/* For small screens: slightly larger tap targets */
+@media (max-width: 640px){
+  .contact-page-section .styled-select{
+    padding: 14px 44px 14px 14px;
+    font-size: 16px;
+  }
+}
+
+/* Modern date input styling */
+.contact-page-section .date-wrapper{
+  position: relative;
+}
+.contact-page-section .styled-date{
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(16,32,57,0.06);
+  background: #fff;
+  color: var(--brand-ink);
+  box-shadow: 0 6px 18px rgba(16,32,57,0.04);
+  font-size: 15px;
+  height: 44px;
+}
+.contact-page-section .date-wrapper::after{
+  content: "\1F4C5"; /* calendar emoji as fallback */
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: rgba(47,47,47,0.6);
+  pointer-events: none;
+}
+.contact-page-section .styled-date::-webkit-calendar-picker-indicator{
+  filter: invert(0%); /* keep default arrow visible but not blue */
+  opacity: 0.9;
+}
+.contact-page-section .styled-date:focus{
+  outline: none;
+  box-shadow: 0 10px 28px rgba(34,22,80,0.08);
+  border-color: rgba(126,42,230,0.6);
+}
+
+@media (max-width: 640px){
+  .contact-page-section .styled-date{ height: 48px; font-size: 16px }
+}
+
+/* File uploader styles for contact form */
+.contact-page-section .file-uploader{
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.contact-page-section .file-drop{
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px dashed rgba(16,32,57,0.08);
+  padding: 12px 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), #fff);
+  box-shadow: 0 8px 30px rgba(16,32,57,0.03);
+}
+.contact-page-section .file-drop-inner{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.contact-page-section .file-drop-inner strong{
+  color: var(--brand-ink);
+}
+.contact-page-section .file-drop-hint{
+  display: block;
+  font-size: 13px;
+  color: rgba(47,47,47,0.6);
+}
+.contact-page-section .file-list{
+  min-width: 220px;
+}
+.contact-page-section .file-list ul{ margin: 0; padding: 0; list-style: none }
+.contact-page-section .file-list li{ font-size: 14px; color: var(--brand-ink); padding: 4px 0 }
+.contact-page-section .file-list .muted{ color: rgba(47,47,47,0.5) }
+
+.contact-page-section .file-drop:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(34,22,80,0.06);
+}
+
+/* Previews grid */
+.contact-page-section .preview-grid{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.contact-page-section .preview-item{
+  width: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  padding: 6px;
+  box-shadow: 0 8px 20px rgba(16,32,57,0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contact-page-section .preview-item img{
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.contact-page-section .preview-item .file-icon{
+  font-size: 13px;
+  color: var(--brand-ink);
+}
+.contact-page-section .preview-item .remove-file{
+  margin-top: 8px;
+  background: transparent;
+  border: none;
+  color: var(--brand-coral);
+  cursor: pointer;
+  font-size: 13px;
+}
