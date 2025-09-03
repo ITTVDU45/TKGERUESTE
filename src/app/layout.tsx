@@ -12,9 +12,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={isDev}>
       <head>
-        <meta name="keywords" content="Gramen - Roofing Services React Next js Template" />
-        <meta name="description" content="metal roofing, industrial roofing, construction, exterior, maintenance, painting, remodelling, renovation, repair service, roof repair, roofers, roofing, roofing company, roofing service, siding websites" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <title>TK GERÜSTE GmbH - Gerüstbau aus Duisburg</title>
+        <meta name="keywords" content="Gerüstbau, TK GERÜSTE, Duisburg, Gerüste, Bau" />
+        <meta name="description" content="TK GERÜSTE GmbH - Professioneller Gerüstbau aus Duisburg. Wir liefern sichere, effiziente Gerüstlösungen für Industrie und Handwerk." />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         {/* For IE  */}
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <link rel="icon" href="/favicon.svg" sizes="any" />
