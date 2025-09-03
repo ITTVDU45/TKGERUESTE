@@ -13,13 +13,13 @@ const feature_data: DataType[] = [
       id: 1,
       icon: <MapPin size={22} />,
       title: "Unser Standort",
-      desc: "Besuchen Sie uns direkt vor Ort in [Straße, PLZ Ort]. Wir beraten Sie gerne persönlich und zeigen Ihnen unsere Lösungen.",
+      desc: "Besuchen Sie uns direkt vor Ort in Düsseldorfer Landstraße 59, 47249 Duisburg. Wir beraten Sie gerne persönlich und zeigen Ihnen unsere Lösungen.",
    },
    {
       id: 2,
       icon: <Phone size={22} />,
       title: "Direkt erreichbar",
-      desc: "Rufen Sie uns an unter [Telefonnummer]. Unser Team ist schnell für Sie da und beantwortet alle Fragen rund um Ihr Bauvorhaben.",
+      desc: "Rufen Sie uns an unter +49 178 268 60 00. Unser Team ist schnell für Sie da und beantwortet alle Fragen rund um Ihr Bauvorhaben.",
    },
    {
       id: 3,
@@ -32,8 +32,8 @@ const feature_data: DataType[] = [
       icon: <Clock size={22} />,
       title: "Unsere Zeiten",
       desc: "Wir sind für Sie da: Mo–Fr von 7:00–17:00 Uhr. Vereinbaren Sie auch gerne individuelle Termine nach Absprache.",
-   },
-]
+   }
+];
 
 interface PropType {
    style: boolean;
@@ -59,7 +59,7 @@ const Features = ({ style }: PropType) => {
                         {/* action buttons per card */}
                         {item.title === "Direkt erreichbar" && (
                            <div className="mt-20">
-                              <Link href="tel:+2085550112" className="primary-btn-1 btn-hover brand-gradient btn-sm">
+                              <Link href="tel:+491782686000" className="primary-btn-1 btn-hover brand-gradient btn-sm">
                                  Jetzt anrufen &nbsp; | <i className="icon-right-arrow"></i>
                               </Link>
                            </div>
