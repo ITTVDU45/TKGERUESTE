@@ -1,4 +1,4 @@
-import HeaderOne from "@/layouts/headers/HeaderOne"
+import HeaderThree from "@/layouts/headers/HeaderThree"
 import Banner from "./Banner"
 import Features from "./Features"
 import About from "./About"
@@ -17,7 +17,7 @@ import FooterOne from "@/layouts/footers/FooterOne"
 const HomeOne = () => {
   return (
     <>
-      <HeaderOne />
+      <HeaderThree />
       <main>
         <Banner />
         <Features style={true} />
