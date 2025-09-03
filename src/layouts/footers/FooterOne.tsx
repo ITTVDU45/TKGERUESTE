@@ -50,9 +50,7 @@ const FooterOne = () => {
                               </p>
                               <div className="footer-socials p-relative">
                                  <span><Link href="#"><i className="fab fa-facebook-f"></i></Link></span>
-                                 <span><Link href="#"><i className="fab fa-twitter"></i></Link></span>
-                                 <span><Link href="#"><i className="fab fa-linkedin-in"></i></Link></span>
-                                 <span><Link href="#"><i className="fab fa-youtube"></i></Link></span>
+                                 <span><Link href="#"><i className="fab fa-google"></i></Link></span>
                               </div>
                            </div>
                         </div>
@@ -100,9 +98,7 @@ const FooterOne = () => {
                      </div>
                      <div className="footer-socials p-relative">
                         <span><Link href="#"><i className="fab fa-facebook-f"></i></Link></span>
-                        <span><Link href="#"><i className="fab fa-twitter"></i></Link></span>
-                        <span><Link href="#"><i className="fab fa-linkedin-in"></i></Link></span>
-                        <span><Link href="#"><i className="fab fa-youtube"></i></Link></span>
+                        <span><Link href="#"><i className="fab fa-google"></i></Link></span>
                      </div>
                      <div className="right-area p-relative">
                         <span><Link href="#">Terms & Condition</Link></span>
