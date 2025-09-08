@@ -72,6 +72,8 @@ Nur wenn öffentliche Flächen genutzt werden – das übernehmen wir gerne.
 👉 **Jetzt anrufen und Termin vereinbaren**`,
     metaTitle: 'Fassadengerüst planen – TK Gerüste GmbH',
     metaDescription: 'Fassadengerüst smart planen: Kosten, Ablauf & Sicherheit. TK Gerüste unterstützt von Erstberatung bis Abbau.'
+    ,
+    thumb: '/assets/imgs/project/projektbild8.jpeg'
   },
   {
     slug: 'raumgeruest-innenausbau-treppenhaus',
@@ -105,6 +107,8 @@ Ein freistehendes Gerüst im Innenraum, modular aufgebaut, das ohne Wandveranker
 👉 **Jetzt anrufen und Termin vereinbaren**`,
     metaTitle: 'Raumgerüste & Innenausbau – TK Gerüste GmbH',
     metaDescription: 'Innen- & Raumgerüste für schnelle, saubere Renovierungen. Treppentürme, Fahrgerüste & Staubschutz.'
+    ,
+    thumb: '/assets/imgs/project/projektbild12.jpeg'
   },
   {
     slug: 'industriegerueste-sonderkonstruktionen',
@@ -133,6 +137,8 @@ Ob Wartung, Revision oder Umbau – Industriegerüste müssen präzise geplant, 
 👉 **Jetzt anrufen und Termin vereinbaren**`,
     metaTitle: 'Industriegerüste Duisburg – TK Gerüste GmbH',
     metaDescription: 'Industriegerüste & Sonderkonstruktionen im laufenden Betrieb. Sicher, schnell, präzise.'
+    ,
+    thumb: '/assets/imgs/project/projektbild17.jpeg'
   }
 ];
 
