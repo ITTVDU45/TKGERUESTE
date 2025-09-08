@@ -17,10 +17,11 @@ export function generateContactConfirmationHtml(payload: ContactPayload, logoUrl
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Ihre Anfrage bei TK Gerüste GmbH</title>
       <style>
+        /* Inline-safe minimal styles */
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background: #f6f8fa; margin:0; padding:0; }
         .container { max-width: 680px; margin: 28px auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 24px rgba(16,32,57,0.08); }
         .header { padding: 20px 28px; background: linear-gradient(90deg, #ff7a00 0%, #7c3aed 100%); color: #fff; display:flex; align-items:center; gap:16px }
-        .logo { height: 40px; }
+        .logo { height: 40px; display:block }
         .content { padding: 28px; color: #0b1220; }
         h1 { font-size:20px; margin:0 0 8px 0; }
         p { margin: 12px 0; line-height:1.5; color: rgba(11,18,32,0.85) }
