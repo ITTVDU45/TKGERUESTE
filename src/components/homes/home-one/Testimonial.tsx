@@ -93,9 +93,6 @@ const Testimonial = ({ style }: PropType) => {
                            ].map((item) => (
                               <SwiperSlide key={item.id} className="swiper-slide">
                                  <div className="autor-upper p-relative">
-                                    <figure className="image">
-                                       <Image src={item.avatar} alt="" width={80} height={80} />
-                                    </figure>
                                     <div className="icon-1">
                                        <i className="icon-comma-double"></i>
                                     </div>
