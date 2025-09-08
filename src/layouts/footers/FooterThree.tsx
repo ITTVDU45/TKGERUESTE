@@ -76,7 +76,7 @@ const FooterThree = () => {
                                  <li><Link href="/services">Leistungen</Link></li>
                                  <li><Link href="/projects">Projekte</Link></li>
                                  <li><Link href="/contact">Kontakt</Link></li>
-                                 <li><Link href="/blog">Blog</Link></li>
+                                 <li><Link href="/blog-grid">Blog</Link></li>
                                  <li><Link href="/faq">FAQ</Link></li>
                               </ul>
                            </div>
