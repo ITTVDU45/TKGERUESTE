@@ -93,8 +93,9 @@ const Banner = () => {
                         <div className="socials-area">
                            <ul>
                               <li><Link href="#"><i className="fab fa-facebook-f"></i></Link></li>
+                              <li><Link href="#"><i className="fab fa-google"></i></Link></li>
                            </ul>
-                           <span>Bewerte Uns auf Google</span>
+                           <span>Folge uns !</span>
                         </div>
                      </div>
                   </div>
