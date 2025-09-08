@@ -988,10 +988,10 @@ html,body,#root{
   transform: translateY(-2px);
 }
 
-/* On hover the Read MORE button should switch to black background with white text */
+/* On hover the 'Mehr dazu' button should show brand gradient (replace legacy red/black) */
 .blog-style-two .primary-btn-5:hover,
 .blog-two-section .blog-style-two .primary-btn-5:hover{
-  background: var(--brand-ink) !important;
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
   color: #fff !important;
 }
 

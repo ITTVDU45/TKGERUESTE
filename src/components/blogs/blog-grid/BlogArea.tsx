@@ -47,7 +47,7 @@ const BlogArea = () => {
                            <p className="blog-text">{item.excerpt}</p>
                            <div className="blog-link">
                               <Link className="primary-btn-5 btn-hover" href={`/blog/${item.slug}`}>
-                                 Read MORE &nbsp; | <i className="icon-right-arrow"></i>
+                                 Mehr dazu &nbsp; | <i className="icon-right-arrow"></i>
                                  <span style={{ top: "147.172px", left: "108.5px" }}></span>
                               </Link>
                            </div>
