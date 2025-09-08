@@ -30,6 +30,22 @@ export async function POST(req: NextRequest) {
 
     await transporter.sendMail(mailOptions);
 
+    // send confirmation to the user if an email was provided
+    if (body.user_email) {
+      try {
+        const confirmOptions = {
+          from: process.env.SMTP_FROM || 'no-reply@tk-geruest.de',
+          to: body.user_email,
+          subject: 'Ihre Anfrage bei TK Gerüste GmbH ist eingegangen',
+          text: `Hallo ${body.first_name || ''},\n\nvielen Dank für Ihre Anfrage. Wir haben Ihre Nachricht erhalten und melden uns schnellstmöglich bei Ihnen.\n\nMit freundlichen Grüßen\nTK Gerüste GmbH`,
+        };
+        await transporter.sendMail(confirmOptions);
+      } catch (confirmErr) {
+        console.error('Confirmation mail failed', confirmErr);
+        // don't fail the whole request because confirmation mail failed
+      }
+    }
+
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (err) {
     console.error(err);
