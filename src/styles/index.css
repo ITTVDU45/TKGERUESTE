@@ -2445,3 +2445,54 @@ html,body,#root{
   border-color: transparent !important;
 }
 
+/* Extra-specific overrides to ensure legacy red hover cannot win (increase specificity + !important) */
+.blog-section-one .row .col-xxl-4 .blog-style-one .blog-link .primary-btn-5.btn-hover:hover,
+.blog-section-one .row .col-xxl-4 .blog-style-one .blog-link .primary-btn-5:hover,
+.blog-style-one .blog-link .primary-btn-5.btn-hover:hover,
+.blog-style-one .blog-link .primary-btn-5:hover{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+/* Ensure inner span/pseudo gets the animated gradient too */
+.blog-style-one .blog-link .primary-btn-5.btn-hover:hover span,
+.blog-style-one .blog-link .primary-btn-5:hover span{
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  color: #fff !important;
+}
+
+/* Force blog title hover in grid to gradient (extra specificity) */
+.blog-section-one .row .col-xxl-4 .blog-style-one .blog-title a:hover,
+.blog-style-one .blog-title a:hover{
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* Blog-grid: meta icons (author + calendar) should use brand gradient */
+.blog-style-one .post-meta i,
+.blog-section-one .post-meta i,
+.blog-style-one .post-meta .fal,
+.blog-section-one .post-meta .fal{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Pagination (ReactPaginate) selected page: gradient background and white text */
+.pagination li.selected a,
+.pagination li.selected{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+/* Also style pagination buttons when using arrow icons */
+.pagination li a{
+  transition: background .18s ease, color .18s ease;
+}
+
