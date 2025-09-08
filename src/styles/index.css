@@ -2484,8 +2484,15 @@ html,body,#root{
 }
 
 /* Pagination (ReactPaginate) selected page: gradient background and white text */
-.pagination li.selected a,
 .pagination li.selected{
+  /* avoid double-layered gradient: keep container neutral */
+  background: none !important;
+  box-shadow: none !important;
+}
+.pagination li.selected a{
+  display: inline-block;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
   background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
   color: #fff !important;
   border-color: transparent !important;
