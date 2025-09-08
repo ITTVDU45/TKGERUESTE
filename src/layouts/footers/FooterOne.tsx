@@ -42,7 +42,7 @@ const FooterOne = () => {
                         <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
                            <div className="footer-widget-1">
                               <figure className="image">
-                                 <Image src="/assets/imgs/logo/tkgeruestelogo.png" alt="tkgeruestelogo" width={160} height={40} />
+                                 <Image src="/assets/imgs/logo/TKGEURSTE-Logoweiß.png" alt="tkgeruestelogo" width={160} height={40} />
                               </figure>
                               <p className="mt-40 mb-30">
                                  TK Gerüste GmbH – Ihr Partner für Gerüstbau in Duisburg und NRW.
