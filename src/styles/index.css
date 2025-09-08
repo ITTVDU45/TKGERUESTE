@@ -2425,3 +2425,23 @@ html,body,#root{
 .offcanvas__overlay{
   background: rgba(0,0,0,0.35) !important;
 }
+
+/* Force blog-grid titles and buttons to use brand gradient on hover (override legacy red) */
+.blog-section-one .blog-title a:hover,
+.blog-style-one .blog-title a:hover{
+  background-image: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+.blog-section-one .primary-btn-5.btn-hover:hover,
+.blog-section-one .primary-btn-5:hover,
+.blog-style-one .primary-btn-5.btn-hover:hover,
+.blog-style-one .primary-btn-5:hover{
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
