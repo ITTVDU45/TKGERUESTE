@@ -7,6 +7,14 @@ export async function getGraphToken(): Promise<string> {
     throw new Error('Missing Graph credentials (GRAPH_TENANT_ID/GRAPH_CLIENT_ID/GRAPH_CLIENT_SECRET)');
   }
 
+  // simple in-memory cache to avoid fetching token for each request in same runtime
+  const cacheKey = `graph_token_${tenant}_${clientId}`;
+  // @ts-ignore global cache
+  if ((global as any).__graphTokenCache && (global as any).__graphTokenCache[cacheKey]) {
+    const cached = (global as any).__graphTokenCache[cacheKey];
+    if (cached.expiresAt > Date.now()) return cached.token;
+  }
+
   const res = await fetch(`https://login.microsoftonline.com/${tenant}/oauth2/v2.0/token`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -20,7 +28,12 @@ export async function getGraphToken(): Promise<string> {
 
   const json = await res.json();
   if (!res.ok) throw new Error(`Failed to get Graph token: ${JSON.stringify(json)}`);
-  return json.access_token;
+
+  const token = json.access_token;
+  const expiresIn = Number(json.expires_in || 3600);
+  (global as any).__graphTokenCache = (global as any).__graphTokenCache || {};
+  (global as any).__graphTokenCache[cacheKey] = { token, expiresAt: Date.now() + (expiresIn - 60) * 1000 };
+  return token;
 }
 
 interface GraphAttachment {
@@ -57,18 +70,33 @@ export async function sendGraphMail(opts: {
     }));
   }
 
-  const res = await fetch(`https://graph.microsoft.com/v1.0/users/${encodeURIComponent(sender)}/sendMail`, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message, saveToSentItems: opts.saveToSentItems !== false }),
-  });
+  // retry logic
+  let attempts = 0;
+  const maxAttempts = 2;
+  let lastErr: any = null;
+  while (attempts < maxAttempts) {
+    attempts++;
+    try {
+      const res = await fetch(`https://graph.microsoft.com/v1.0/users/${encodeURIComponent(sender)}/sendMail`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message, saveToSentItems: opts.saveToSentItems !== false }),
+      });
 
-  if (res.status !== 202) {
-    const text = await res.text();
-    throw new Error(`Graph sendMail failed (${res.status}): ${text}`);
+      if (res.status === 202) return true;
+      const text = await res.text();
+      lastErr = new Error(`Graph sendMail failed (${res.status}): ${text}`);
+    } catch (err) {
+      lastErr = err;
+      // if token likely expired, refresh once
+      if (attempts === 1) {
+        token = await getGraphToken();
+      }
+    }
+    // small backoff
+    await new Promise((r) => setTimeout(r, 250 * attempts));
   }
-
-  return true;
+  throw lastErr;
 }
 
 
