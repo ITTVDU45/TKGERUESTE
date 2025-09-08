@@ -1,5 +1,6 @@
 import { generateContactConfirmationHtml } from '@/lib/emailTemplates/contactConfirmation';
 import { sendGraphMail } from '@/lib/graphMailer';
+import fs from 'fs';
 import type { NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest) {
@@ -27,6 +28,14 @@ export async function POST(req: NextRequest) {
       contentBytes: Buffer.isBuffer(a.content) ? a.content.toString('base64') : Buffer.from(a.content).toString('base64'),
     }));
 
+    const now = new Date().toISOString();
+    const logLine = `${now} [contact] Sending internal mail: ${graphFrom} -> ${graphTo} subject: ${subject}\n`;
+    try {
+      fs.appendFileSync('/tmp/contact_send.log', logLine);
+    } catch (e) {
+      // ignore logging failures
+    }
+
     await sendGraphMail({
       from: graphFrom,
       to: graphTo,
@@ -34,22 +43,30 @@ export async function POST(req: NextRequest) {
       bodyText: text,
       attachments: graphAttachments,
     });
+    try {
+      fs.appendFileSync('/tmp/contact_send.log', `${new Date().toISOString()} [contact] Internal mail sent (Graph accepted)\n`);
+    } catch (e) {}
 
     // send confirmation to the user if an email was provided
     if (body.user_email) {
       try {
         const logoUrl = `${process.env.NEXT_PUBLIC_BASE_URL || ''}/assets/imgs/logo/TKGEURSTE-Logoweiß.png`;
         const html = generateContactConfirmationHtml(body, logoUrl);
-        const confirmOptions: any = {
-          from: process.env.SMTP_FROM || 'no-reply@tk-geruest.de',
-          to: body.user_email,
+        const confirmTo = body.user_email;
+        try {
+          fs.appendFileSync('/tmp/contact_send.log', `${new Date().toISOString()} [contact] Sending confirmation mail: ${graphFrom} -> ${confirmTo}\n`);
+        } catch (e) {}
+        await sendGraphMail({
+          from: graphFrom,
+          to: confirmTo,
           subject: 'Ihre Anfrage bei TK Gerüste GmbH ist eingegangen',
-          text: `Hallo ${body.first_name || ''},\n\nvielen Dank für Ihre Anfrage. Wir haben Ihre Nachricht erhalten und melden uns schnellstmöglich bei Ihnen.\n\nMit freundlichen Grüßen\nTK Gerüste GmbH`,
-          html,
-          // attach the same files the user uploaded
-          attachments,
-        };
-        await transporter.sendMail(confirmOptions);
+          bodyText: `Hallo ${body.first_name || ''},\n\nvielen Dank für Ihre Anfrage. Wir haben Ihre Nachricht erhalten und melden uns schnellstmöglich bei Ihnen.\n\nMit freundlichen Grüßen\nTK Gerüste GmbH`,
+          bodyHtml: html,
+          attachments: graphAttachments,
+        });
+        try {
+          fs.appendFileSync('/tmp/contact_send.log', `${new Date().toISOString()} [contact] Confirmation mail sent (Graph accepted)\n`);
+        } catch (e) {}
       } catch (confirmErr) {
         console.error('Confirmation mail failed', confirmErr);
         // don't fail the whole request because confirmation mail failed
