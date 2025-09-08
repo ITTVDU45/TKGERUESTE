@@ -1103,6 +1103,9 @@ html,body,#root{
   padding: 6px 0;
   opacity: 1 !important;
   text-decoration: none;
+  pointer-events: auto !important; /* ensure clickable */
+  cursor: pointer !important;
+  z-index: 3; /* keep above potential overlays */
 }
 
 .footer-main .latest-post-widget .post-item h6{
