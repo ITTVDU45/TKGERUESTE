@@ -67,6 +67,9 @@ export async function sendGraphMail(opts: {
       name: a.name,
       contentType: a.contentType || 'application/octet-stream',
       contentBytes: a.contentBytes,
+      // optional inline fields
+      ...(a.contentId ? { contentId: a.contentId } : {}),
+      ...(typeof a.isInline !== 'undefined' ? { isInline: !!a.isInline } : {}),
     }));
   }
 

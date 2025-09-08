@@ -28,6 +28,15 @@ export async function POST(req: NextRequest) {
       contentBytes: Buffer.isBuffer(a.content) ? a.content.toString('base64') : Buffer.from(a.content).toString('base64'),
     }));
 
+    // embed logo as inline attachment (CID) if logo exists in public
+    const logoPath = 'public/assets/imgs/logo/TKGEURSTE-Logowei%C3%9F.png';
+    try {
+      const logoBuffer = fs.readFileSync(logoPath);
+      graphAttachments.unshift({ name: 'tk_logo.png', contentType: 'image/png', contentBytes: logoBuffer.toString('base64'), contentId: 'tk_logo', isInline: true });
+    } catch (e) {
+      // if logo not found, skip inline embedding
+    }
+
     const now = new Date().toISOString();
     const logLine = `${now} [contact] Sending internal mail: ${graphFrom} -> ${graphTo} subject: ${subject}\n`;
     try {

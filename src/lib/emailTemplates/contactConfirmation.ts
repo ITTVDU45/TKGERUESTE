@@ -33,7 +33,7 @@ export function generateContactConfirmationHtml(payload: ContactPayload, logoUrl
     <body>
       <div class="container">
         <div class="header">
-          <img src="${logoUrl}" alt="TK Gerüste" class="logo" />
+          <img src="cid:tk_logo" alt="TK Gerüste" class="logo" />
           <div>
             <strong>TK Gerüste GmbH</strong>
             <div style="font-size:12px; opacity:0.95">Ihre Anfrage wurde erhalten</div>
