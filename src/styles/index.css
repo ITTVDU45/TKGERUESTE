@@ -1094,6 +1094,21 @@ html,body,#root{
   left: 0 !important;
   right: 0 !important;
 }
+
+/* Ensure footer shapes don't block interactions and keep links on top */
+.footer-main .footer-shape-1,
+.footer-main .footer-shape-2{
+  position: absolute;
+  z-index: 0;
+  pointer-events: none; /* shapes should not intercept clicks */
+}
+
+.footer-main .footer-top,
+.footer-main .footer-bottom{
+  position: relative;
+  z-index: 5; /* make sure contents sit above decorative shapes */
+  pointer-events: auto;
+}
 .footer-main .footer-links li{ list-style: none; }
 .footer-main .footer-links li a,
 .footer-main .footer-links li a:link,
