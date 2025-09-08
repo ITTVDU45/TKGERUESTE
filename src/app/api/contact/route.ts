@@ -33,11 +33,13 @@ export async function POST(req: NextRequest) {
     // send confirmation to the user if an email was provided
     if (body.user_email) {
       try {
-        const confirmOptions = {
+        const confirmOptions: any = {
           from: process.env.SMTP_FROM || 'no-reply@tk-geruest.de',
           to: body.user_email,
           subject: 'Ihre Anfrage bei TK Gerüste GmbH ist eingegangen',
           text: `Hallo ${body.first_name || ''},\n\nvielen Dank für Ihre Anfrage. Wir haben Ihre Nachricht erhalten und melden uns schnellstmöglich bei Ihnen.\n\nMit freundlichen Grüßen\nTK Gerüste GmbH`,
+          // attach the same files the user uploaded
+          attachments,
         };
         await transporter.sendMail(confirmOptions);
       } catch (confirmErr) {
