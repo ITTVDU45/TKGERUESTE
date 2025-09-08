@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import { generateContactConfirmationHtml } from '@/lib/emailTemplates/contactConfirmation';
 import type { NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest) {
@@ -33,11 +34,14 @@ export async function POST(req: NextRequest) {
     // send confirmation to the user if an email was provided
     if (body.user_email) {
       try {
+        const logoUrl = `${process.env.NEXT_PUBLIC_BASE_URL || ''}/assets/imgs/logo/TKGEURSTE-Logoweiß.png`;
+        const html = generateContactConfirmationHtml(body, logoUrl);
         const confirmOptions: any = {
           from: process.env.SMTP_FROM || 'no-reply@tk-geruest.de',
           to: body.user_email,
           subject: 'Ihre Anfrage bei TK Gerüste GmbH ist eingegangen',
           text: `Hallo ${body.first_name || ''},\n\nvielen Dank für Ihre Anfrage. Wir haben Ihre Nachricht erhalten und melden uns schnellstmöglich bei Ihnen.\n\nMit freundlichen Grüßen\nTK Gerüste GmbH`,
+          html,
           // attach the same files the user uploaded
           attachments,
         };
