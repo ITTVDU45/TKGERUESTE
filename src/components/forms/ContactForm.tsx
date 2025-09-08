@@ -57,11 +57,27 @@ const ContactForm = () => {
    const [selectedFileObjects, setSelectedFileObjects] = useState<File[]>([]);
    const attachmentsInputRef = useRef<HTMLInputElement | null>(null);
 
+   // Client-side limits
+   const MAX_FILE_SIZE = 8 * 1024 * 1024; // 8MB
+   const MAX_FILES = 5;
+
    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const files = e.target.files;
       if (!files || files.length === 0) return;
 
       const newFiles = Array.from(files);
+
+      // validate sizes and count
+      for (const f of newFiles) {
+         if (f.size > MAX_FILE_SIZE) {
+            toast(`Datei ${f.name} ist zu groß. Max ${Math.round(MAX_FILE_SIZE / 1024 / 1024)}MB.`, { position: 'top-center' });
+            return;
+         }
+      }
+      if (selectedFileObjects.length + newFiles.length > MAX_FILES) {
+         toast(`Maximal ${MAX_FILES} Dateien erlaubt.`, { position: 'top-center' });
+         return;
+      }
 
       // Combine previously selected files with newly selected ones
       const combinedFiles = [...selectedFileObjects, ...newFiles];
