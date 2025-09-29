@@ -149,26 +149,111 @@ Nachfolgend die häufigsten Fragen — als klickbares Accordion (Details/Summary
 
 Aktualisiert: 27. August 2025 · Lesedauer: ca. 5–7 Min.
 
+## Innen- & Raumgerüste: Effizientes Arbeiten bei Ausbau & Renovierung
+
+*Unsere Raum- und Treppengerüste machen Arbeiten schneller, sicherer und sauberer – vom Altbauflur bis zur Industriehalle.*
+
 ### Geeignet für
-Maler, Trockenbau, Elektro, SHK, Fensterbau, Messebau
+Maler, Trockenbau, Elektro, SHK (Sanitär, Heizung, Klima), Fensterbau, Messebau
+
+---
 
 ### Kurzfassung
-Innenarbeiten haben ihre eigenen Tücken: enge Treppenhäuser, hohe Decken, empfindliche Böden. Unsere Raum- und Treppengerüste machen Arbeiten schneller, sicherer und sauberer.
+Innenausbau und Renovierungen bringen spezielle Herausforderungen mit sich: enge Treppenhäuser, hohe Decken, empfindliche Böden.  
+Mit den passenden **Innen- und Raumgerüsten** – freistehenden, modularen Arbeitsgerüsten für Innenräume – lassen sich solche Arbeiten deutlich schneller, sicherer und sauberer erledigen.  
+Im Vergleich zur Leiter bieten Raum- und Treppengerüste einen stabilen Stand in luftiger Höhe und beschleunigen zugleich viele Abläufe. Zudem schützen sie durch durchdachte Zusatzmaßnahmen die Bausubstanz und das Inventar vor Schäden und Schmutz.
 
-### Was ist ein Raumgerüst?
-Ein freistehendes Gerüst im Innenraum, modular aufgebaut, das ohne Wandverankerung auskommt. Es ermöglicht sicheren Stand bei hohen Decken und schnelle Versetzung einzelner Felder.
+---
 
-### Typische Einsatzorte
-- Treppenhäuser & Galerien
-- Altbau & Denkmal
-- Showrooms & Hallen
-- Büros & Praxen
+## Was ist ein Raumgerüst?
+Ein **Raumgerüst** ist ein freistehendes Gerüst, das innerhalb von Räumen aufgebaut wird – ohne Wandverankerung und voll modular.  
+Es besteht meist aus leichten, aber robusten Aluminium- oder Stahlkomponenten, die sich flexibel zusammenbauen lassen.  
+So entsteht eine stabile Arbeitsplattform, die sicheren Zugang zu hochgelegenen Bereichen ermöglicht.  
 
-### Schutz & Sauberkeit
-- Bodenschutz (Vlies, Platten), Kantenschutz an Treppenstufen
-- Staubschutzwände und Einhausungen für sensible Bereiche
+Selbst in Räumen mit sehr hohen Decken (z.B. Altbauwohnungen, Hallen) kann man mit einem Raumgerüst komfortabel und gefahrlos arbeiten.  
+Da keine Befestigung an Wänden nötig ist, bleiben empfindliche Innenwände oder historische Oberflächen unversehrt.
 
-👉 **Jetzt anrufen und Termin vereinbaren**`,
+Ein großer Vorteil: Raumgerüste sind häufig **mobil** oder schnell umsetzbar.  
+Viele Modelle – oft **Zimmergerüst** oder **Fahrgerüst** genannt – besitzen Rollen und höhenverstellbare Füße.  
+Dadurch lässt sich das Gerüst leicht im Raum verschieben und an unebene Untergründe anpassen.  
+Muss an mehreren Stellen eines Raumes gearbeitet werden, spart ein solches Fahrgerüst enorm Zeit, weil es zeitsparend von A nach B gerollt werden kann.  
+
+Gleichzeitig gewährleistet der modulare Aufbau, dass einzelne Segmente oder Plattformhöhen rasch verstellt und dem Arbeitsbereich angepasst werden können.
+
+---
+
+### Treppengerüst
+Eine Sonderform des Raumgerüsts ist das **Treppengerüst**, speziell entwickelt für Arbeiten im Treppenhaus.  
+Hierbei handelt es sich um Gerüstsysteme mit anpassbaren Auslegern und Füßen, die trotz Stufenhöhenunterschied einen waagerechten, sicheren Arbeitsstand ermöglichen.  
+
+Ein Treppengerüst ist unverzichtbar, wenn z.B. im engen Aufgang eines Mehrgeschoss-Treppenhauses gestrichen, tapeziert oder installiert werden muss.  
+Es überbrückt Treppenstufen und bietet auch in großer Höhe eine stabile Plattform, um selbst Feinarbeiten mit ruhiger Hand auszuführen.  
+
+Hochwertige Treppengerüste sind so konstruiert, dass sie stabil und standfest bleiben, sich schnell montieren lassen und auch auf unebenen Stufen sicher stehen.
+
+---
+
+## Typische Einsatzorte
+
+Innen- und Raumgerüste kommen überall dort zum Einsatz, wo im Inneren in die Höhe gearbeitet wird oder beengte Platzverhältnisse herrschen.  
+Beispiele aus der Praxis:
+
+- **Treppenhäuser & Galerien**  
+  In verwinkelten oder hohen Treppenhäusern ermöglichen spezielle Treppengerüste sicheres Arbeiten, z.B. zum Streichen von Decken und Wänden oder Montieren von Leuchten in großer Höhe.  
+  Gerade Maler, Elektriker und SHK-Installateure schätzen diese Gerüste, da sie auch in schmalen Aufgängen einen sicheren Stand bieten.
+
+- **Altbau & Denkmal**  
+  Historische Gebäude und Altbauten haben oft sehr hohe Räume, Stuckdecken oder empfindliche Oberflächen.  
+  Freistehende Raumgerüste erlauben Arbeiten an Decken und Wänden, ohne die Bausubstanz durch Bohrlöcher für Verankerungen zu beeinträchtigen.  
+  In Kirchen, Schlössern oder denkmalgeschützten Altbau-Villen sind maßgeschneiderte Raumgerüste oft die einzige Lösung.
+
+- **Showrooms & Hallen**  
+  Große Verkaufsräume, Ausstellungshallen oder Industriehallen verfügen über weite Flächen und hohe Decken.  
+  Hier lassen sich modulare Raumgerüste zu ganzen Arbeitsbühnenlandschaften ausbauen, um z.B. Beleuchtung, Lüftung oder Deckenkonstruktionen zu installieren und warten.  
+  Auch Bühnenbauer und Messebauer nutzen solche Gerüste für Auf- und Abbau in Veranstaltungsstätten.
+
+- **Büros & Praxen**  
+  In Büros, Arztpraxen oder anderen genutzten Innenräumen kommt es darauf an, zügig und sauber zu arbeiten.  
+  Innenraumgerüste, die abends schnell auf- und abgebaut werden können, minimieren Ausfallzeiten.  
+  Zudem ermöglichen sie, dank integrierter Arbeitsplattform, mehrere Tätigkeiten (etwa Kabel verlegen, Deckenpaneele einsetzen, Malerarbeiten) in einem Durchgang zu erledigen – ohne ständiges Umsetzen von Leitern.
+
+---
+
+## Schutz & Sauberkeit
+
+Innenarbeiten erfordern nicht nur sicheres, sondern auch **sauberes Arbeiten** – schließlich sollen bestehende Böden, Treppen und Einrichtungsgegenstände keinen Schaden nehmen.  
+Unsere Raum- und Treppengerüste werden daher immer in ein Schutzkonzept eingebunden:
+
+- **Bodenschutz**  
+  Vor dem Gerüstaufbau werden Fußböden sorgfältig abgedeckt.  
+  Je nach Untergrund kommen Malervliese, Schutzfolien oder robuste Hartfaserplatten zum Einsatz, um Parkett, Fliesen oder Teppiche vor Kratzern, Farbklecksen und Druckstellen zu bewahren.  
+
+- **Treppen- und Kantenschutz**  
+  Treppen stellen eine besondere Herausforderung dar.  
+  Deshalb schützen wir Treppenstufen in Arbeitsbereichen mit selbsthaftendem Treppenschutzvlies oder speziellen Kantenschutz-Profilen.  
+  Diese Polsterungen verhindern Absplitterungen und Kratzer, selbst wenn schweres Material hinauf- und hinuntergetragen wird.  
+
+- **Staubschutzwände und Einhausungen**  
+  Feiner Baustaub kann sich in bewohnten oder genutzten Gebäuden schnell überall verteilen.  
+  Um das zu verhindern, setzen wir Staubschutzsysteme ein.  
+  Mobile Staubschutzwände trennen den Baustellenbereich luftdicht vom restlichen Gebäude.  
+  Zusätzlich installieren wir Staubschutztüren oder Luftreiniger mit Filtern, damit der restliche Wohn- oder Arbeitsbereich sauber und staubfrei bleibt.
+
+---
+
+## Fazit
+
+Innen- und Raumgerüste sind für Ausbau und Renovierung im Innenbereich ein echter **Gamechanger**.  
+Sie ermöglichen Handwerkern aller Gewerke, in schwierigen Umgebungen effizienter zu arbeiten – ob im verwinkelten Treppenhaus oder unter der Hallendecke.  
+
+Gleichzeitig erhöhen sie die Arbeitssicherheit, da ein stabiles Gerüst mit Geländern wesentlich weniger Unfallrisiko bedeutet als improvisierte Lösungen auf Leitern.  
+Nicht zuletzt bleibt die Umgebung durch professionelle Schutzvorkehrungen weitgehend sauber und unbeschädigt.  
+
+**Kurz:** Mit den richtigen Innen- und Treppengerüsten wird aus einer kniffligen Innenbaustelle eine gut organisierte, sichere und saubere Angelegenheit – schneller, sicherer und sauberer eben.
+
+---
+
+`,
     metaTitle: 'Raumgerüste & Innenausbau – TK Gerüste GmbH',
     metaDescription: 'Innen- & Raumgerüste für schnelle, saubere Renovierungen. Treppentürme, Fahrgerüste & Staubschutz.'
     ,
