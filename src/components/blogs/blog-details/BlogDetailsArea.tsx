@@ -25,6 +25,11 @@ function renderMarkdownToHtml(md: string) {
 	if (!md) return ''
 	const lines = md.split('\n')
 	let out = ''
+
+	const processInline = (s: string) => {
+		// render **bold** -> <strong>bold</strong>
+		return s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+	}
 	for (let i = 0; i < lines.length; i++) {
 		const line = lines[i].trim()
 		// CTA pattern: 👉 **Call to action** -> render as button
@@ -35,11 +40,11 @@ function renderMarkdownToHtml(md: string) {
       out += `<div class="cta-wrap"><a class="cta-button" href="tel:+491782686000" aria-label="Jetzt anrufen: +49 178 268 60 00">${label}</a></div>`
       continue
     }
-		if (line.startsWith('### ')) out += `<h3>${line.replace('### ', '')}</h3>`
-		else if (line.startsWith('## ')) out += `<h2>${line.replace('## ', '')}</h2>`
-		else if (line.startsWith('# ')) out += `<h1>${line.replace('# ', '')}</h1>`
+		if (line.startsWith('### ')) out += `<h3>${processInline(line.replace('### ', ''))}</h3>`
+		else if (line.startsWith('## ')) out += `<h2>${processInline(line.replace('## ', ''))}</h2>`
+		else if (line.startsWith('# ')) out += `<h1>${processInline(line.replace('# ', ''))}</h1>`
 		else if (line === '') out += `<p></p>`
-		else out += `<p>${line}</p>`
+		else out += `<p>${processInline(line)}</p>`
 	}
 	return out
 }
