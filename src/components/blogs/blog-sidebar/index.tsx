@@ -6,7 +6,7 @@ import Tags from "./Tags"
 import Image from "next/image"
 import posts from '@/data/BlogPosts'
 
-import img_1 from "@/assets/imgs/service/service-widget-1.jpg"
+import img_1 from "@/assets/imgs/project/projektbild16.jpeg"
 
 const BlogSidebar = () => {
    return (
@@ -32,6 +32,7 @@ const BlogSidebar = () => {
                         <i className="fal fa-phone-volume"></i>
                      </div>
                      <h5>Noch Fragen?</h5>
+                     <p className="mb-15">Wir beraten Sie persönlich und finden die passende Lösung für Ihr Projekt. Rufen Sie uns gern an oder fordern Sie ein Angebot an.</p>
                      <a className="pt-25 pb-25 phone" href="tel:2085550112">Jetzt Anrufen</a>
                      <div className="btn-box">
                         <Link className="primary-btn-1 btn-hover" href="/contact">

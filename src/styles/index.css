@@ -901,6 +901,11 @@ html,body,#root{
   border-radius: 4px !important;
   box-shadow: none !important;
 }
+/* Remove legacy red line (some themes add a ::before pseudo) */
+.blog-sidebar .blog-widget-title.p-relative::before{
+  content: none !important;
+  display: none !important;
+}
 
 /* Calendar / meta icons in sidebar — show gradient glyphs */
 .blog-sidebar .blog-post-sidebar .content span i,
@@ -949,6 +954,17 @@ html,body,#root{
   font-size: 20px;
 }
 
+/* Remove decorative pseudo-elements / border around the service-widget icon */
+.blog-sidebar .service-widget-2 .icon-box{
+  border: none !important;
+}
+.blog-sidebar .service-widget-2 .icon-box::before,
+.blog-sidebar .service-widget-2 .icon-box::after{
+  content: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
 /* Ensure phone CTA text remains readable and uses gradient on hover */
 .blog-sidebar .service-widget-2 a.phone{
   color: #fff !important;
@@ -957,6 +973,14 @@ html,body,#root{
 }
 .blog-sidebar .service-widget-2 a.phone:hover{
   opacity: 0.95;
+}
+
+/* Sidebar 'Noch Fragen' description should be white on dark background */
+.blog-sidebar .service-widget-2 .content p{
+  color: #ffffff !important;
+  margin: 0 0 12px 0;
+  font-size: 1.25rem;
+  line-height: 1.4;
 }
 
 /* Tags (Stichworte): use brand gradient buttons instead of red */
@@ -974,6 +998,14 @@ html,body,#root{
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(16,32,57,0.06);
 }
+
+/* All posts list: clearer separation and small brand bullet */
+.blog-sidebar .all-posts-list{ margin:0; padding:0; list-style:none; }
+.blog-sidebar .all-posts-list li{ display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid rgba(16,32,57,0.04); }
+.blog-sidebar .all-posts-list li:last-child{ border-bottom:none; padding-bottom:0; }
+.blog-sidebar .all-posts-list li::before{ content:''; flex:0 0 10px; width:10px; height:10px; border-radius:999px; background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%); margin-top:6px; }
+.blog-sidebar .all-posts-list li a{ color: var(--brand-ink); display:block; }
+.blog-sidebar .all-posts-list li a:hover{ text-decoration: none; opacity:0.95; }
 
 /* Blog: change 'Read MORE' red button to brand gradient */
 .blog-style-two .primary-btn-5,
@@ -2445,6 +2477,43 @@ html,body,#root{
   border-color: transparent !important;
 }
 
+/* CTA button rendered from markdown in blog details */
+.cta-wrap { display: flex; margin-top: 0.75rem; }
+.cta-button {
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  color: #fff;
+  padding: 0.5rem 0.9rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(34,22,80,0.08);
+  border: none;
+  cursor: pointer;
+  font-size: 0.98rem;
+}
+.cta-button:hover { transform: translateY(-1px); }
+
+/* Accordion adjustments: reduce overall size, icon and spacing */
+.faq-accordion { margin-top: 0.6rem; }
+.faq-item { padding: 0.6rem 0.9rem; border-radius: 12px; }
+/* summary marker (browser default) is hidden so only our SVG is visible */
+summary.faq-question::-webkit-details-marker { display: none; }
+summary.faq-question::marker { display: none; }
+.faq-question { font-size: 1.75rem; font-weight: 600; padding: 0; line-height: 1.35; color: var(--brand-ink); }
+.faq-question span { display: inline-block; max-width: calc(100% - 44px); }
+.faq-icon { width: 20px; height: 20px; }
+.faq-item[open] .faq-icon { transform: rotate(180deg); }
+
+/* Answer text a bit larger and darker for readability */
+.faq-answer { font-size: 1.05rem; color: rgba(47,47,47,0.92); }
+
+@media (max-width: 768px) {
+  .faq-item { padding: 0.55rem 0.8rem; }
+  .faq-question { font-size: 1.12rem; }
+  .faq-icon { width: 18px; height: 18px; }
+  .faq-answer { font-size: 1.02rem; }
+}
+
+
 /* Extra-specific overrides to ensure legacy red hover cannot win (increase specificity + !important) */
 .blog-section-one .row .col-xxl-4 .blog-style-one .blog-link .primary-btn-5.btn-hover:hover,
 .blog-section-one .row .col-xxl-4 .blog-style-one .blog-link .primary-btn-5:hover,
@@ -2502,4 +2571,31 @@ html,body,#root{
 .pagination li a{
   transition: background .18s ease, color .18s ease;
 }
+
+/* Clear any background or pseudo elements on pagination containers to avoid double-gradients */
+.pagination,
+.pagination li,
+.pagination li a{
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.pagination li::before,
+.pagination li::after,
+.pagination li a::before,
+.pagination li a::after{
+  content: none !important;
+  background: none !important;
+}
+
+/* Apply single gradient only to the anchor of the selected page */
+.pagination li.selected a{
+  display: inline-block;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  background: linear-gradient(90deg, var(--brand-magenta) 12%, var(--brand-violet) 46%, var(--brand-orange) 88%) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
 

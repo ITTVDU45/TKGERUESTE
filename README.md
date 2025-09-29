@@ -34,3 +34,23 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Mailer / Microsoft Graph Configuration
+
+This project supports sending contact form emails via Microsoft Graph (recommended) using OAuth2 Client Credentials. To enable Graph sending, set the following environment variables (server-side only):
+
+- `GRAPH_TENANT_ID` - Azure AD Tenant ID
+- `GRAPH_CLIENT_ID` - App Registration Client ID
+- `GRAPH_CLIENT_SECRET` - App Registration Client Secret
+- `GRAPH_SENDER` - Mailbox to send as (e.g. `info@tk-gerueste.de`)
+
+Optional:
+- `GRAPH_RECIPIENT` - override recipient for internal mails (default `info@tk-geruest.de`)
+
+How it works:
+- The API route `POST /api/contact` will use Graph when `GRAPH_*` vars are set. Files uploaded in the contact form are sent as base64 attachments.
+- The service uses client credentials flow to obtain a token, with simple in-memory caching and retry logic. For production, rotate `GRAPH_CLIENT_SECRET` regularly and store secrets in a secure store (Vercel Secrets, Azure Key Vault, etc.).
+
+Debugging & logs:
+- During development, Graph send attempts are logged to `/tmp/contact_send.log` and rotated by `scripts/rotate-contact-log.sh`.
+

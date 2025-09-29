@@ -82,6 +82,9 @@ const FaqArea = () => {
                         height: '100%',
                         minHeight: 320,
                      }} />
+
+
+                     
                   </figure>
                </div>
             </div>
