@@ -40,6 +40,8 @@ interface GraphAttachment {
   name: string;
   contentType?: string;
   contentBytes: string; // base64
+  contentId?: string;
+  isInline?: boolean;
 }
 
 export async function sendGraphMail(opts: {
@@ -51,7 +53,7 @@ export async function sendGraphMail(opts: {
   attachments?: GraphAttachment[];
   saveToSentItems?: boolean;
 }) {
-  const token = await getGraphToken();
+  let token = await getGraphToken();
   const sender = opts.from;
   const toArr = Array.isArray(opts.to) ? opts.to : [opts.to];
 
