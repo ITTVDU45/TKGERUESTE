@@ -101,8 +101,8 @@ const FooterOne = () => {
                         <span><Link href="#"><i className="fab fa-google"></i></Link></span>
                      </div>
                      <div className="right-area p-relative">
-                        <span><Link href="#">Terms & Condition</Link></span>
-                        <span><Link href="#">Privacy Policy</Link></span>
+                        <span><Link href="/legal/impressum">Impressum</Link></span>
+                        <span><Link href="/legal/datenschutz">Datenschutz</Link></span>
                      </div>
                   </div>
                </div>

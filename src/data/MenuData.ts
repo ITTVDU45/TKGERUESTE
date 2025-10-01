@@ -53,6 +53,7 @@ const menu_data: MenuItem[] = [
         sub_menus: [
             { link: "/blog-grid", title: "Blog" },
             { link: "/faq", title: "FAQ" },
+            { link: "/legal/datenschutz", title: "Datenschutz" },
         ],
     },
 ];

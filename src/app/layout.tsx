@@ -1,5 +1,6 @@
 import "../styles/index.css";
 import FooterOne from '@/layouts/footers/FooterOne'
+import CookieConsentClient from '@/components/CookieConsentClient'
 
 export default function RootLayout({
   children,
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body suppressHydrationWarning={true}>
         {children}
         <FooterOne />
+        <CookieConsentClient />
       </body>
     </html>
   )

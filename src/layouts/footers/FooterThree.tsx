@@ -108,8 +108,8 @@ const FooterThree = () => {
                         <span>© All Copyright 2025 by <Link href="/">TK Gerüste GmbH</Link></span>
                      </div>
                      <div className="right-area">
-                        <span><Link href="#">Terms & Condition</Link></span>
-                        <span><Link href="#">Privacy Policy</Link></span>
+                        <span><Link href="/legal/impressum">Impressum</Link></span>
+                        <span><Link href="/legal/datenschutz">Datenschutz</Link></span>
                      </div>
                   </div>
                </div>
