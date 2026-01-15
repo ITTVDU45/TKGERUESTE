@@ -12,9 +12,15 @@ const ImpressumContent = () => {
               
               <h2 id="m46" className="text-2xl mt-8 mb-4">Diensteanbieter</h2>
               <p className="mb-2">TK GERÜSTE GmbH</p>
+              
               <p className="mb-2">Kirchstraße 26a</p>
               <p className="mb-2">42799 Leichlingen (Rheinland)</p>
               <p className="mb-6">Deutschland</p>
+
+              <h2 className="text-2xl mt-8 mb-4">Verantwortliche Personen</h2>
+              <p className="mb-2"><strong>Geschäftsführer:</strong> Volkan Tekin</p>
+              <p className="mb-2"><strong>Bauleiter:</strong> Özgür Kadem</p>
+              <p className="mb-6"><strong>Kaufmännische Leitung:</strong> Hakan Kilic</p>
 
               <h2 id="m56" className="text-2xl mt-8 mb-4">Kontaktmöglichkeiten</h2>
               <p className="mb-2">E-Mail-Adresse: info@tk-gerueste.de</p>
